@@ -1,6 +1,7 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
 @import './sidebar.css';
 @import './input.css';
+@import './select.css';
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';

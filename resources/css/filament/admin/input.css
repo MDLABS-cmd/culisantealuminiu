@@ -32,38 +32,3 @@ input.fi-input {
     line-height: 1.5;
     min-height: 2.8125rem;
 }
-
-select.fi-select-input {
-    @apply min-h-[2.8125rem] py-0 ps-0 pe-5 text-sm text-gray-900;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.5;
-    background-position: right 0.25rem center;
-    background-size: 1.25rem 1.25rem;
-}
-
-.fi-select-input div[x-ref='select'] {
-    min-height: 2.8125rem;
-}
-
-.fi-select-input .fi-select-input-btn {
-    @apply min-h-[2.8125rem] rounded-none py-0 ps-0 pe-5 text-sm text-gray-900;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.5;
-    background-position: right 0.25rem center;
-    background-size: 1.25rem 1.25rem;
-}
-
-.fi-select-input .fi-select-input-ctn-clearable .fi-select-input-btn {
-    @apply pe-7;
-}
-
-.fi-select-input .fi-select-input-value-label,
-.fi-select-input .fi-select-input-placeholder {
-    @apply text-sm;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.5;
-}
-
-.fi-select-input .fi-select-input-placeholder {
-    @apply text-gray-400;
-}

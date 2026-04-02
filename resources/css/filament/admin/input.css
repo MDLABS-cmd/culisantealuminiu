@@ -1,0 +1,69 @@
+/* Input Styling - From Figma Node 476:3892 */
+
+.fi-fo-field:not(.fi-fo-field-has-inline-label) {
+    row-gap: 0.625rem;
+}
+
+.fi-fo-field .fi-fo-field-label-content {
+    color: #111827;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.fi-input-wrp {
+    @apply rounded-xl bg-white shadow-none ring-1 ring-gray-400;
+    min-height: 2.8125rem;
+}
+
+.fi-input-wrp:not(.fi-disabled):not(:has(.fi-ac-action:focus)) {
+    @apply focus-within:ring-1 focus-within:ring-gray-400;
+}
+
+.fi-input-wrp .fi-input-wrp-content-ctn,
+.fi-input-wrp:not(:has(.fi-input-wrp-content-ctn)) > * {
+    @apply px-6;
+}
+
+input.fi-input {
+    @apply px-0 py-0 text-sm text-gray-900 placeholder:text-gray-400;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    min-height: 2.8125rem;
+}
+
+select.fi-select-input {
+    @apply min-h-[2.8125rem] py-0 ps-0 pe-5 text-sm text-gray-900;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    background-position: right 0.25rem center;
+    background-size: 1.25rem 1.25rem;
+}
+
+.fi-select-input div[x-ref='select'] {
+    min-height: 2.8125rem;
+}
+
+.fi-select-input .fi-select-input-btn {
+    @apply min-h-[2.8125rem] rounded-none py-0 ps-0 pe-5 text-sm text-gray-900;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    background-position: right 0.25rem center;
+    background-size: 1.25rem 1.25rem;
+}
+
+.fi-select-input .fi-select-input-ctn-clearable .fi-select-input-btn {
+    @apply pe-7;
+}
+
+.fi-select-input .fi-select-input-value-label,
+.fi-select-input .fi-select-input-placeholder {
+    @apply text-sm;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+}
+
+.fi-select-input .fi-select-input-placeholder {
+    @apply text-gray-400;
+}

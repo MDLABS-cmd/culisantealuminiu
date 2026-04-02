@@ -1,0 +1,68 @@
+/* Sidebar Styling - From Figma Design */
+
+.fi-sidebar {
+    @apply h-auto w-fit rounded-2xl bg-gray-500 p-0;
+}
+
+.fi-sidebar-nav {
+    @apply flex flex-col gap-0 p-2.5!;
+    scrollbar-gutter: auto;
+}
+
+.fi-sidebar-nav-groups {
+    @apply mx-0 flex flex-col gap-0;
+}
+
+.fi-sidebar-group {
+    @apply flex flex-col gap-0;
+}
+
+.fi-sidebar-group-items {
+    @apply flex flex-col gap-0;
+}
+
+.fi-sidebar-item {
+    @apply rounded-lg border-b border-gray-400 px-4 py-3 text-sm font-normal text-white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.fi-sidebar-item > .fi-sidebar-item-btn {
+    @apply rounded-none;
+}
+
+.fi-sidebar-item > .fi-sidebar-item-btn > .fi-icon,
+.fi-sidebar-group-btn > .fi-icon,
+.fi-sidebar-group-dropdown-trigger-btn > .fi-icon,
+.fi-sidebar-item-grouped-border {
+    @apply hidden;
+}
+
+.fi-sidebar-item.fi-active {
+    @apply bg-gray-400 text-white;
+    background-color: rgb(156, 163, 175) !important;
+}
+
+.fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: rgb(156, 163, 175) !important;
+}
+
+.fi-sidebar-item.fi-active a,
+.fi-sidebar-item.fi-active span {
+    @apply text-white;
+    background-color: transparent !important;
+}
+
+.fi-sidebar-item.fi-sidebar-item-has-url > .fi-sidebar-item-btn:hover,
+.fi-sidebar-item.fi-sidebar-item-has-url > .fi-sidebar-item-btn:focus-visible {
+    background-color: transparent !important;
+}
+
+.fi-sidebar-item:last-child {
+    @apply border-b-0;
+}
+
+/* Ensure proper text styling */
+.fi-sidebar-item span,
+.fi-sidebar-item a {
+    @apply text-sm whitespace-nowrap text-white;
+}

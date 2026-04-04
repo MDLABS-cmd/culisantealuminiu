@@ -21,4 +21,9 @@ class Dimension extends Model
     {
         return $this->belongsTo(Schema::class);
     }
+
+    public function pricing(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(DimensionPricing::class);
+    }
 }

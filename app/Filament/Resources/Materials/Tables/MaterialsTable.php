@@ -14,18 +14,9 @@ class MaterialsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn($query) => $query->with('systems'))
             ->columns([
-                TextColumn::make('systems.name')
-                    ->badge()
-                    ->limitList()
-                    ->separator(', ')
-                    ->label('Systems'),
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('price')
-                    ->numeric()
-                    ->sortable(),
                 IconColumn::make('active')
                     ->boolean(),
                 TextColumn::make('order')

@@ -29,10 +29,6 @@ class SystemForm
                     ->relationship('colorCategories', 'name')
                     ->multiple()
                     ->preload(),
-                Select::make('materials')
-                    ->relationship('materials', 'name')
-                    ->multiple()
-                    ->preload(),
             ]);
     }
 }

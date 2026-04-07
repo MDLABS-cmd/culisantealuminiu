@@ -23,10 +23,4 @@ class System extends Model
         return $this->belongsToMany(ColorCategory::class)
             ->withTimestamps();
     }
-
-    public function materials(): BelongsToMany
-    {
-        return $this->belongsToMany(Material::class)
-            ->withTimestamps();
-    }
 }

@@ -14,10 +14,14 @@ return new class extends Migration
                 ->unique()
                 ->constrained()
                 ->cascadeOnDelete();
+            $table->foreignId('material_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->float('material_cost')->default(0);
             $table->float('working_hours')->default(0);
             $table->float('working_cost')->default(0);
             $table->float('price_without_vat')->default(0);
-            $table->float('adaos')->default(0);
+            $table->float('additional_cost')->default(0);
             $table->timestamps();
         });
     }

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable([
     'name',
-    'price',
     'active',
     'order',
 ])]
@@ -19,13 +19,11 @@ class Material extends Model
     use HasFactory;
 
     protected $casts = [
-        'price' => 'double',
         'active' => 'boolean',
     ];
 
-    public function systems(): BelongsToMany
+    public function schemas(): HasMany
     {
-        return $this->belongsToMany(System::class)
-            ->withTimestamps();
+        return $this->hasMany(Schema::class);
     }
 }

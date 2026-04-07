@@ -19,6 +19,10 @@ class SchemaForm
                     ->relationship('system', 'name')
                     ->required()
                     ->preload(),
+                Select::make('material_id')
+                    ->relationship('material', 'name')
+                    ->required()
+                    ->preload(),
                 TextInput::make('name')
                     ->required(),
                 Select::make('price_type')

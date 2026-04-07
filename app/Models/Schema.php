@@ -10,7 +10,7 @@ use App\Enums\SchemaPriceTypeEnum;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['system_id', 'name', 'price_type', 'order', 'active'])]
+#[Fillable(['system_id', 'material_id', 'name', 'price_type', 'order', 'active'])]
 class Schema extends Model
 {
     /** @use HasFactory<\Database\Factories\SchemaFactory> */
@@ -26,8 +26,26 @@ class Schema extends Model
         return $this->belongsTo(System::class);
     }
 
+    public function material(): BelongsTo
+    {
+        return $this->belongsTo(Material::class);
+    }
+
     public function dimensions(): HasMany
     {
         return $this->hasMany(Dimension::class);
+    }
+
+    // Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
+    public function scopeStatus($query, SchemaPriceTypeEnum|string $status)
+    {
+        $value = $status instanceof SchemaPriceTypeEnum ? $status->value : $status;
+
+        return $query->where('price_type', $value);
     }
 }

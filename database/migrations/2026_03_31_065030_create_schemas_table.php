@@ -17,6 +17,9 @@ return new class extends Migration
             $table->foreignId('system_id')
                 ->constrained()
                 ->cascadeOnDelete();
+            $table->foreignId('material_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('name');
             $table->string('price_type')->default(SchemaPriceTypeEnum::STANDARD->value);
             $table->integer('order')->default(0);

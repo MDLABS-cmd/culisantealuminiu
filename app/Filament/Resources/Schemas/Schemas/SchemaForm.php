@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Schemas\Schemas;
 
 use App\Enums\SchemaPriceTypeEnum;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -25,6 +26,14 @@ class SchemaForm
                     ->preload(),
                 TextInput::make('name')
                     ->required(),
+                FileUpload::make('image')
+                    ->label('Image')
+                    ->image()
+                    ->disk('public')
+                    ->directory('schemas')
+                    ->visibility('public')
+                    ->storeFiles(false)
+                    ->nullable(),
                 Select::make('price_type')
                     ->options(SchemaPriceTypeEnum::options())
                     ->required(),

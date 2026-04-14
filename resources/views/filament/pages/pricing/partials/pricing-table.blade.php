@@ -14,23 +14,23 @@
                         </th>
                         <th
                             class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                            Material Cost
+                            Materie prima
                         </th>
                         <th
                             class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                            Working Hours
+                            Ore manopera
                         </th>
                         <th
                             class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                            Working Cost
+                            Manopera
                         </th>
                         <th
                             class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                            Price w/o VAT
+                            Pret fara TVA
                         </th>
                         <th
                             class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                            Additional Cost
+                            Adaos
                         </th>
                     </tr>
                 </thead>

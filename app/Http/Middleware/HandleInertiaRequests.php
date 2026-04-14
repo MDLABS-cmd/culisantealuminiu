@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\SystemService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -35,6 +37,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $cachePeriod = now()->addHour();
+        $cachedSystems = Cache::remember(
+            'active_systems_v2',
+            $cachePeriod,
+            fn() => app(SystemService::class)->getActiveSystemsArray(),
+        );
+
+        $normalizedSystems = collect($cachedSystems)->values()->all();
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -42,6 +53,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
+            'activeSystems' => $normalizedSystems,
         ];
     }
 }

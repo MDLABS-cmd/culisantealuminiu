@@ -14,9 +14,10 @@ class PricingCalculationService
         $workingCost = round($workingHours * $hourlyRate, 2);
 
         $row['working_cost'] = $workingCost;
-        $totalWithoutVat = $materialCost + $workingCost;
+        $additionalCost = round($globalAdjustment * $materialCost, 2);
+        $row['additional_cost'] = round($additionalCost, 2);
+        $totalWithoutVat = round($additionalCost + $workingCost, 2);
         $row['price_without_vat'] = round($totalWithoutVat, 2);
-        $row['additional_cost'] = round($workingCost + $globalAdjustment, 2);
     }
 
     /**

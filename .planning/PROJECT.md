@@ -55,22 +55,24 @@ A customer can configure a sliding aluminium window/door system and receive an a
 
 ## Key Decisions
 
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| Hybrid Inertia + API loading | Systems/schemas load with page (fast); heavy per-schema data loads on demand (avoids huge initial payload) | — Pending |
-| React Context for selection state | Multi-step config requires shared state without prop drilling; avoids over-engineering with global state lib | — Pending |
-| price_without_vat as dimension base price | Pre-calculated in DimensionPricing records, no client-side material formula needed | — Pending |
-| Tailwind v4 CSS-first config | Already established in project; no tailwind.config.js | ✓ Good |
-| Dark mode removed | Simplified to light-only; no dark: classes ever activate | ✓ Good |
+| Decision                                  | Rationale                                                                                                    | Outcome   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------ | --------- |
+| Hybrid Inertia + API loading              | Systems/schemas load with page (fast); heavy per-schema data loads on demand (avoids huge initial payload)   | — Pending |
+| React Context for selection state         | Multi-step config requires shared state without prop drilling; avoids over-engineering with global state lib | — Pending |
+| price_without_vat as dimension base price | Pre-calculated in DimensionPricing records, no client-side material formula needed                           | — Pending |
+| Tailwind v4 CSS-first config              | Already established in project; no tailwind.config.js                                                        | ✓ Good    |
+| Dark mode removed                         | Simplified to light-only; no dark: classes ever activate                                                     | ✓ Good    |
 
 ---
-*Last updated: April 10, 2026 after project initialization*
+
+_Last updated: April 10, 2026 after project initialization_
 
 ## Evolution
 
 This document evolves at phase transitions and milestone boundaries.
 
 **After each phase transition** (via `/gsd-transition`):
+
 1. Requirements invalidated? → Move to Out of Scope with reason
 2. Requirements validated? → Move to Validated with phase reference
 3. New requirements emerged? → Add to Active
@@ -78,6 +80,7 @@ This document evolves at phase transitions and milestone boundaries.
 5. "What This Is" still accurate? → Update if drifted
 
 **After each milestone** (via `/gsd-complete-milestone`):
+
 1. Full review of all sections
 2. Core Value check — still the right priority?
 3. Audit Out of Scope — reasons still valid?

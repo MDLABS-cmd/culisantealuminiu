@@ -23,4 +23,9 @@ class System extends Model
         return $this->belongsToMany(ColorCategory::class)
             ->withTimestamps();
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
 }

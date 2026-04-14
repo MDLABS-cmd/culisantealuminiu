@@ -17,7 +17,7 @@ class PricingTableService
      */
     public function getSystems(): array
     {
-        return $this->systemService->getActive();
+        return $this->systemService->getSystemsForPricing();
     }
 
     /**

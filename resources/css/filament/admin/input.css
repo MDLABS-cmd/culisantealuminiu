@@ -23,11 +23,11 @@
 
 .fi-input-wrp .fi-input-wrp-content-ctn,
 .fi-input-wrp:not(:has(.fi-input-wrp-content-ctn)) > * {
-    @apply px-6;
+    @apply px-3;
 }
 
 input.fi-input {
-    @apply px-0 py-0 text-sm text-gray-900 placeholder:text-gray-400;
+    @apply border-[0.5px] border-[#e5e7eb] px-0 py-0 text-sm text-gray-900 placeholder:text-gray-400;
     font-family: 'Poppins', sans-serif;
     line-height: 1.5;
     min-height: 2.8125rem;

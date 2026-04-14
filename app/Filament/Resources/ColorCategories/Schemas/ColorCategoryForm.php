@@ -15,6 +15,7 @@ class ColorCategoryForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->columnSpanFull()
                     ->required(),
                 Toggle::make('active')
                     ->required(),

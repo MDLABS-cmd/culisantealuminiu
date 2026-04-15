@@ -148,9 +148,9 @@ function ConfiguratorPageContent() {
     };
 
     return (
-        <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_380px] xl:items-start">
+        <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_400px] xl:items-start">
             <div className="space-y-6">
-                <Section title="Alege schema" className="text-center">
+                <Section title="Alege schema" titleClassName="text-center">
                     <SchemaSelector
                         schemas={state.schemas}
                         selectedSchemaId={state.selectedSchemaId}

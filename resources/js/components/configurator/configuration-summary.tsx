@@ -92,13 +92,6 @@ export function ConfigurationSummary({
     const selectedSchemaLabel = selectedSchema?.name ?? 'Nu au fost selectate';
     const selectedSystemLabel = selectedSystem?.name ?? 'Nu au fost selectate';
 
-    const customOfferLabel =
-        selectedColors.length >= 2
-            ? 'Bicolor'
-            : selectedColors.length === 1
-              ? selectedColors[0].color.name
-              : 'Nespecificat';
-
     const canContinue = Boolean(
         selectedSystem && selectedSchema && selectedDimension && selectedHandle,
     );

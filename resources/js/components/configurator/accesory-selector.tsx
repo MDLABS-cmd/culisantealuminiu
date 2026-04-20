@@ -1,3 +1,5 @@
+import { SelectionCheckboxCard } from '@/components/selection-checkbox-card';
+import { EmptyState } from '@/components/ui/empty-state';
 import type { Accesory } from '@/types';
 
 type AccesorySelectorProps = {
@@ -27,11 +29,7 @@ export function AccesorySelector({
     }
 
     if (accesories.length === 0) {
-        return (
-            <p className="mt-3 text-sm text-[#6b7280]">
-                No accessories available.
-            </p>
-        );
+        return <EmptyState title="No accessories available" />;
     }
 
     return (
@@ -40,34 +38,20 @@ export function AccesorySelector({
                 const selected = selectedAccesoryIds.includes(accesory.id);
 
                 return (
-                    <label
+                    <SelectionCheckboxCard
                         key={accesory.id}
-                        className={`flex w-full cursor-pointer items-start justify-between gap-3 rounded-2xl border px-4 py-3 text-left text-sm transition ${
-                            selected
-                                ? 'border-[#111827] bg-[#f9fafb]'
-                                : 'border-[#e5e7eb] bg-white hover:border-[#d1d5db] hover:bg-[#fafaf9]'
-                        }`}
-                    >
-                        <span className="flex items-start gap-3">
-                            <input
-                                type="checkbox"
-                                checked={selected}
-                                onChange={() => onToggle(accesory.id)}
-                                className="mt-0.5 h-4 w-4 rounded border-[#cbd5e1] text-[#111827] focus:ring-[#111827]/20"
-                            />
-                            <span>
-                                <span className="block font-medium text-[#111827]">
-                                    {accesory.name}
-                                </span>
-                                <span className="mt-1 block text-xs text-[#6b7280]">
-                                    Optional add-on
-                                </span>
+                        checked={selected}
+                        onChange={() => onToggle(accesory.id)}
+                        title={accesory.name}
+                        description="Optional add-on"
+                        aside={
+                            <span className="font-semibold text-[#111827]">
+                                {Number(accesory.price).toFixed(2)}
                             </span>
-                        </span>
-                        <span className="font-semibold text-[#111827]">
-                            {Number(accesory.price).toFixed(2)}
-                        </span>
-                    </label>
+                        }
+                        className="rounded-xl border-[0.5px] border-[#e5e7eb] px-4 py-3"
+                        titleClassName="font-medium"
+                    />
                 );
             })}
         </div>

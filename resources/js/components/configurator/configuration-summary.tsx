@@ -1,3 +1,4 @@
+import { useConfigurator } from '@/hooks/use-configurator';
 import type {
     Color,
     ColorCategoryWithColors,
@@ -29,6 +30,8 @@ export function ConfigurationSummary({
     options,
     summary,
 }: ConfigurationSummaryProps) {
+    const { hasCompletedRequiredSelections, markSelectionCompleted } =
+        useConfigurator();
     const selectedSystem = systems.find((item) => item.id === selectedSystemId);
     const selectedSchema = selectedSchemaId ? options?.schema : null;
     const selectedDimension = options?.dimensions.find(
@@ -95,6 +98,16 @@ export function ConfigurationSummary({
     const canContinue = Boolean(
         selectedSystem && selectedSchema && selectedDimension && selectedHandle,
     );
+
+    const handleSummaryAction = () => {
+        if (!canContinue) {
+            return;
+        }
+
+        if (!hasCompletedRequiredSelections) {
+            markSelectionCompleted();
+        }
+    };
 
     return (
         <aside className="rounded-[20px] bg-white p-6 md:p-6 lg:sticky lg:top-6">
@@ -163,6 +176,7 @@ export function ConfigurationSummary({
                 type="button"
                 disabled={!canContinue}
                 className="mt-8 w-full rounded-[14px] bg-[#111827] px-10 py-2 font-['Poppins'] text-[14px] leading-normal text-white transition disabled:cursor-not-allowed disabled:opacity-50"
+                onClick={handleSummaryAction}
             >
                 Comandă acum
             </button>

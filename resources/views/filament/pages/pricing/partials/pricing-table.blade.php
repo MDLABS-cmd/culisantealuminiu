@@ -18,7 +18,7 @@
                         </th>
                         <th
                             class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                            Ore manopera
+                            Ore lucru
                         </th>
                         <th
                             class="px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
@@ -80,9 +80,7 @@
             <span>Ajustare globala: <strong>{{ number_format($this->global_adjustment, 2) }}</strong></span>
             <span>Pret ora: <strong>{{ number_format($this->hourly_rate, 2) }}</strong></span>
         </div>
-        <button wire:click="savePricing"
-            class="rounded-[14px] bg-gray-900 px-6 py-2 text-sm text-white shadow-sm hover:bg-gray-800 focus:outline-none">
-            Salvare
-        </button>
+        <x-ui.livewire-button title="Salvare" loading-target="savePricing" wire:click="savePricing"
+            class="rounded-[14px] bg-gray-900 px-6 py-2 text-sm text-white shadow-sm hover:bg-gray-800" />
     </div>
 </div>

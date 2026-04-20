@@ -18,10 +18,9 @@
             </div>
 
             <div class="flex lg:self-end">
-                <button type="button" wire:click="save"
-                    class="inline-flex h-11.25 items-center justify-center rounded-[14px] bg-gray-900 px-6 py-2 font-['Poppins'] text-sm font-normal text-white shadow-[0_1px_4px_0_rgba(12,12,13,0.05)] transition hover:bg-black">
-                    Modifica ajustare
-                </button>
+                <x-ui.livewire-button title="Modifica ajustare" loading-title="Se salveaza..." loading-target="save"
+                    wire:click="save"
+                    class="h-11.25 rounded-[14px] bg-gray-900 px-6 py-2 font-['Poppins'] text-sm font-normal text-white shadow-[0_1px_4px_0_rgba(12,12,13,0.05)] hover:bg-black" />
             </div>
         </div>
     </x-pricing.card-shell>

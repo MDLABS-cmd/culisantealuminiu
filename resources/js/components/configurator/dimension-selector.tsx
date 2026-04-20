@@ -1,19 +1,27 @@
-import type { DimensionWithPricing } from '@/types';
+import { useConfigurator } from '@/hooks/use-configurator';
+import { DimensionListSelect } from './dimension-list-select';
+import { DimensionManualInputs } from './dimension-manual-inputs';
+import { useDimensionSelector } from '@/hooks/use-dimension-selector';
 
-type DimensionSelectorProps = {
-    dimensions: DimensionWithPricing[];
-    selectedDimensionId: number | null;
-    loading: boolean;
-    onSelect: (dimensionId: number) => void;
-};
+export function DimensionSelector() {
+    const {
+        state: { options, loadingOptions },
+    } = useConfigurator();
+    const dimensions = options?.dimensions ?? [];
 
-export function DimensionSelector({
-    dimensions,
-    selectedDimensionId,
-    loading,
-    onSelect,
-}: DimensionSelectorProps) {
-    if (loading) {
+    const {
+        useDimensionList,
+        manualWidth,
+        manualHeight,
+        matchedDimension,
+        setManualWidth,
+        setManualHeight,
+        handleModeChange,
+    } = useDimensionSelector({
+        dimensions,
+    });
+
+    if (loadingOptions) {
         return (
             <div className="mt-4 grid gap-3 md:grid-cols-2">
                 {Array.from({ length: 4 }).map((_, index) => (
@@ -29,43 +37,36 @@ export function DimensionSelector({
     if (dimensions.length === 0) {
         return (
             <p className="mt-3 text-sm text-[#6b7280]">
-                No dimensions available for this schema.
+                Nu exista dimensiuni disponibile pentru aceasta schema.
             </p>
         );
     }
 
     return (
         <div className="mt-4">
-            <label
-                htmlFor="dimension-selector"
-                className="text-[11px] font-medium tracking-[0.18em] text-[#6b7280] uppercase"
-            >
-                Dimensions
+            <label className="flex items-center gap-3 text-sm font-medium text-[#111827]">
+                <input
+                    type="checkbox"
+                    checked={useDimensionList}
+                    onChange={(event) => {
+                        handleModeChange(event.target.checked);
+                    }}
+                    className="h-4 w-4 rounded border-[#d1d5db] text-[#111827] focus:ring-[#111827]/20"
+                />
+                Selecteaza dimensiunile din lista noastra
             </label>
-            <select
-                id="dimension-selector"
-                value={selectedDimensionId ?? ''}
-                onChange={(event) => {
-                    const value = Number(event.target.value);
 
-                    if (Number.isFinite(value) && value > 0) {
-                        onSelect(value);
-                    }
-                }}
-                className="mt-2 w-full rounded-[14px] border border-[#d1d5db] bg-white px-4 py-3 text-sm font-medium text-[#111827] transition outline-none focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-            >
-                <option value="">Select dimensions</option>
-                {dimensions.map((dimension) => {
-                    const price = dimension.pricing?.price_without_vat ?? 0;
-
-                    return (
-                        <option key={dimension.id} value={dimension.id}>
-                            {dimension.width} x {dimension.height} mm -{' '}
-                            {Number(price).toFixed(2)}
-                        </option>
-                    );
-                })}
-            </select>
+            {useDimensionList ? (
+                <DimensionListSelect />
+            ) : (
+                <DimensionManualInputs
+                    manualWidth={manualWidth}
+                    manualHeight={manualHeight}
+                    matchedDimension={matchedDimension}
+                    onWidthChange={setManualWidth}
+                    onHeightChange={setManualHeight}
+                />
+            )}
         </div>
     );
 }

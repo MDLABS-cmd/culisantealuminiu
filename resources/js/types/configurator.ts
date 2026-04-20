@@ -44,9 +44,24 @@ export type ConfiguratorState = {
     optionsError: string | null;
 };
 
+export type OrderState = {
+    companyName: string | null;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    address: string;
+    observations: string | null;
+    createAccount: boolean;
+    password: string | null;
+    confirmPassword: string | null;
+};
+
 export type ConfiguratorContextValue = {
     state: ConfiguratorState;
+    orderState: OrderState;
     summary: ConfiguratorSummary;
+    hasCompletedRequiredSelections: boolean;
     setSystems: (systems: System[]) => void;
     setSelectedSystem: (systemId: number | null) => void;
     setSchemas: (schemas: ConfiguratorSchemaListItem[]) => void;
@@ -59,6 +74,8 @@ export type ConfiguratorContextValue = {
     selectHandle: (handleId: number | null) => void;
     toggleAccesory: (accesoryId: number) => void;
     selectColor: (categoryId: number, colorId: number | null) => void;
+    setOrderState: (orderState: OrderState) => void;
+    markSelectionCompleted: () => void;
     resetForSystemChange: (nextSystemId: number | null) => void;
     resetForSchemaChange: (nextSchemaId: number | null) => void;
 };

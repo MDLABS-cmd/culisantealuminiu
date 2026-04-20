@@ -15,6 +15,7 @@ import type {
     ConfiguratorSchemaListItem,
     ConfiguratorSchemaOptionsPayload,
     ConfiguratorState,
+    OrderState,
     System,
 } from '@/types';
 
@@ -37,8 +38,24 @@ const initialState: ConfiguratorState = {
     optionsError: null,
 };
 
+const initialOrderState: OrderState = {
+    companyName: null,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    address: '',
+    observations: null,
+    createAccount: false,
+    password: null,
+    confirmPassword: null,
+};
+
 export function ConfiguratorProvider({ children }: PropsWithChildren) {
     const [state, setState] = useState<ConfiguratorState>(initialState);
+    const [orderState, setOrderState] = useState<OrderState>(initialOrderState);
+    const [hasCompletedRequiredSelections, setHasCompletedRequiredSelections] =
+        useState(false);
 
     const resetDependentSelections = useCallback(
         (nextSchemaId: number | null, nextSystemId: number | null) => {
@@ -76,6 +93,8 @@ export function ConfiguratorProvider({ children }: PropsWithChildren) {
     const value = useMemo<ConfiguratorContextValue>(
         () => ({
             state,
+            orderState,
+            hasCompletedRequiredSelections,
             summary: state.options ? summary : emptySummary,
             setSystems: (systems: System[]) => {
                 setState((previous) => ({ ...previous, systems }));
@@ -157,8 +176,20 @@ export function ConfiguratorProvider({ children }: PropsWithChildren) {
             resetForSchemaChange: (nextSchemaId: number | null) => {
                 resetDependentSelections(nextSchemaId, state.selectedSystemId);
             },
+            setOrderState: (orderState: OrderState) => {
+                setOrderState(orderState);
+            },
+            markSelectionCompleted: () => {
+                setHasCompletedRequiredSelections(true);
+            },
         }),
-        [resetDependentSelections, state, summary],
+        [
+            resetDependentSelections,
+            state,
+            orderState,
+            hasCompletedRequiredSelections,
+            summary,
+        ],
     );
 
     return (

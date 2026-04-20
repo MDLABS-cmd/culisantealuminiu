@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ColorCategoryWithColors } from '@/types';
+import { EmptyState } from '../ui/empty-state';
 import { ColorCategoryAccordion } from './color-category-accordion';
 
 type ColorSelectorProps = {
@@ -37,9 +38,7 @@ export function ColorSelector({
 
     if (categories.length === 0) {
         return (
-            <p className="mt-3 text-sm text-[#6b7280]">
-                No color options available.
-            </p>
+            <EmptyState title="Nu exista culori disponibile pentru aceasta sistem" />
         );
     }
 

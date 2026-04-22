@@ -11,73 +11,63 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: root
-          key: ${{ secrets.ROOT_SSH_KEY }}
+          username: ${{ secrets.CPANEL_USER }}
+          key: ${{ secrets.CPANEL_SSH_KEY }}
           script: |
             set -euo pipefail
+            umask 022
 
-            CPUSER="${{ secrets.CPANEL_USER }}"          # mediades
-            APP_PATH="${{ secrets.APP_PATH }}"           # /home/mediades/usi-culisante/laravel
-
+            APP_PATH="${{ secrets.APP_PATH }}"
             PHP84="/opt/cpanel/ea-php84/root/usr/bin/php"
             NODE_BIN_DIR="/opt/cpanel/ea-nodejs22/bin"
+
+            export PATH="$NODE_BIN_DIR:$PATH"
 
             test -x "$PHP84"
             test -d "$APP_PATH"
 
-            chown -R "$CPUSER:$CPUSER" "$APP_PATH" || true
-            chmod -R ug+rwX "$APP_PATH/.git" || true
+            cd "$APP_PATH"
 
-            su - "$CPUSER" -s /bin/bash -c "
-              set -euo pipefail
-              umask 022
+            git config --global --add safe.directory "$APP_PATH"
+            export GIT_SSH_COMMAND='ssh -i ~/.ssh/github_deploy -o IdentitiesOnly=yes'
 
-              export PATH='$NODE_BIN_DIR:'\"\$PATH\"
-              cd '$APP_PATH'
+            "$PHP84" -v
+            node -v
+            npm -v
 
-              git config --global --add safe.directory '$APP_PATH'
-              export GIT_SSH_COMMAND='ssh -i ~/.ssh/github_deploy -o IdentitiesOnly=yes'
+            "$PHP84" artisan down --retry=60 || true
 
-              '$PHP84' -v
-              node -v
-              npm -v
+            git fetch origin main --prune
+            git reset --hard origin/main
 
-              '$PHP84' artisan down --retry=60 || true
-
-              git fetch origin main --prune
-              git reset --hard origin/main
-
-              if command -v composer >/dev/null 2>&1; then
-                composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-              else
-                if [ ! -f composer.phar ]; then
-                  curl -sS https://getcomposer.org/installer | '$PHP84'
-                fi
-                '$PHP84' composer.phar install --no-dev --optimize-autoloader --no-interaction
+            if command -v composer >/dev/null 2>&1; then
+              composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+            else
+              if [ ! -f composer.phar ]; then
+                curl -sS https://getcomposer.org/installer | "$PHP84"
               fi
+              "$PHP84" composer.phar install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+            fi
 
-              if [ -f package-lock.json ]; then
-                npm -v
-                npm ci
-                npm run build
-              else
-                npm -v
-                npm install
-                npm run build
-              fi
+            if [ -f package-lock.json ]; then
+              npm ci
+              npm run build
+            else
+              npm install
+              npm run build
+            fi
 
-              mkdir -p storage bootstrap/cache
-              '$PHP84' artisan storage:link || true
-              chmod 755 '$APP_PATH' '$APP_PATH/public' || true
-              chmod 644 '$APP_PATH/.htaccess' '$APP_PATH/public/.htaccess' || true
-              chmod -R ug+rwx storage bootstrap/cache
+            mkdir -p storage bootstrap/cache
+            "$PHP84" artisan storage:link || true
 
-              '$PHP84' artisan optimize:clear
+            chmod 755 "$APP_PATH" "$APP_PATH/public" || true
+            chmod 644 "$APP_PATH/.htaccess" "$APP_PATH/public/.htaccess" || true
+            chmod -R ug+rwx storage bootstrap/cache
 
-              '$PHP84' artisan migrate --force
-              '$PHP84' artisan config:cache
-              '$PHP84' artisan route:cache
-              '$PHP84' artisan view:cache
+            "$PHP84" artisan optimize:clear
+            "$PHP84" artisan migrate --force
+            "$PHP84" artisan config:cache
+            "$PHP84" artisan route:cache
+            "$PHP84" artisan view:cache
 
-              '$PHP84' artisan up || true
-            "
+            "$PHP84" artisan up || true

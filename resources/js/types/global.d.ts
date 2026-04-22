@@ -8,6 +8,10 @@ declare module '@inertiajs/core' {
             auth: Auth;
             sidebarOpen: boolean;
             activeSystems: System[];
+            flash: {
+                submissionId: number | null;
+                submissionType: string | null;
+            };
             [key: string]: unknown;
         };
     }

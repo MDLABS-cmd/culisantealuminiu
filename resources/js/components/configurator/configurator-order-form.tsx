@@ -1,3 +1,6 @@
+import { router } from '@inertiajs/react';
+import { useState } from 'react';
+import { store as submissionStore } from '@/actions/App/Http/Controllers/ConfiguratorSubmissionController';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useConfigurator } from '@/hooks/use-configurator';
@@ -43,7 +46,9 @@ function Field({ id, label, required, children, className }: FieldProps) {
 }
 
 export default function ConfiguratorOrderForm() {
-    const { orderState, setOrderState } = useConfigurator();
+    const { orderState, setOrderState, state, summary } = useConfigurator();
+    const [processing, setProcessing] = useState(false);
+    const [errors, setErrors] = useState<Record<string, string>>({});
 
     const updateTextField = (field: TextFieldKey, value: string) => {
         setOrderState({
@@ -71,6 +76,58 @@ export default function ConfiguratorOrderForm() {
         });
     };
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const colorId =
+            Object.values(state.selectedColorIdsByCategory).find(
+                (id) => id !== null,
+            ) ?? null;
+
+        const selectedSystem = state.systems.find(
+            (s) => s.id === state.selectedSystemId,
+        );
+
+        const payload = {
+            order: {
+                company_name: orderState.companyName,
+                first_name: orderState.firstName,
+                last_name: orderState.lastName,
+                email: orderState.email,
+                phone: orderState.phone,
+                address: orderState.address,
+                observations: orderState.observations,
+                create_account: orderState.createAccount,
+                password: orderState.password,
+                password_confirmation: orderState.confirmPassword,
+            },
+            submission: {
+                is_custom: selectedSystem?.is_custom ?? false,
+                system_id: state.selectedSystemId,
+                schema_id: state.selectedSchemaId,
+                dimension_id: state.selectedDimensionId,
+                handle_id: state.selectedHandleId,
+                color_id: colorId,
+                base_price: summary.basePrice,
+                handle_price: summary.handlePrice,
+                accessories_total: summary.accessoriesTotal,
+                total_price: summary.total,
+            },
+            selected_accesory_ids: state.selectedAccesoryIds,
+        };
+        console.log('Submitting order with payload:', payload);
+
+        router.post(submissionStore.url(), payload, {
+            onStart: () => {
+                setProcessing(true);
+                setErrors({});
+            },
+            onFinish: () => setProcessing(false),
+            onError: (validationErrors) =>
+                setErrors(validationErrors as Record<string, string>),
+        });
+    };
+
     return (
         <Section
             title="Confirmare comanda"
@@ -78,7 +135,7 @@ export default function ConfiguratorOrderForm() {
             titleClassName="text-center"
             descriptionClassName="text-center"
         >
-            <form className="mt-6 space-y-6">
+            <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
                 <div className="grid gap-4 md:grid-cols-2">
                     <Field id="companyName" label="Companie">
                         <Input
@@ -94,6 +151,11 @@ export default function ConfiguratorOrderForm() {
                                 )
                             }
                         />
+                        {errors['order.company_name'] && (
+                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                {errors['order.company_name']}
+                            </p>
+                        )}
                     </Field>
 
                     <Field id="phone" label="Telefon" required>
@@ -109,6 +171,11 @@ export default function ConfiguratorOrderForm() {
                                 updateTextField('phone', event.target.value)
                             }
                         />
+                        {errors['order.phone'] && (
+                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                {errors['order.phone']}
+                            </p>
+                        )}
                     </Field>
 
                     <Field id="firstName" label="Prenume" required>
@@ -123,6 +190,11 @@ export default function ConfiguratorOrderForm() {
                                 updateTextField('firstName', event.target.value)
                             }
                         />
+                        {errors['order.first_name'] && (
+                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                {errors['order.first_name']}
+                            </p>
+                        )}
                     </Field>
 
                     <Field id="lastName" label="Nume" required>
@@ -137,6 +209,11 @@ export default function ConfiguratorOrderForm() {
                                 updateTextField('lastName', event.target.value)
                             }
                         />
+                        {errors['order.last_name'] && (
+                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                {errors['order.last_name']}
+                            </p>
+                        )}
                     </Field>
 
                     <Field
@@ -157,6 +234,11 @@ export default function ConfiguratorOrderForm() {
                                 updateTextField('email', event.target.value)
                             }
                         />
+                        {errors['order.email'] && (
+                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                {errors['order.email']}
+                            </p>
+                        )}
                     </Field>
 
                     <Field
@@ -176,6 +258,11 @@ export default function ConfiguratorOrderForm() {
                                 updateTextField('address', event.target.value)
                             }
                         />
+                        {errors['order.address'] && (
+                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                {errors['order.address']}
+                            </p>
+                        )}
                     </Field>
 
                     <Field
@@ -244,6 +331,11 @@ export default function ConfiguratorOrderForm() {
                                         )
                                     }
                                 />
+                                {errors['order.password'] && (
+                                    <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                        {errors['order.password']}
+                                    </p>
+                                )}
                             </Field>
 
                             <Field
@@ -266,10 +358,23 @@ export default function ConfiguratorOrderForm() {
                                         )
                                     }
                                 />
+                                {errors['order.password_confirmation'] && (
+                                    <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                        {errors['order.password_confirmation']}
+                                    </p>
+                                )}
                             </Field>
                         </div>
                     )}
                 </div>
+
+                <button
+                    type="submit"
+                    disabled={processing}
+                    className="w-full rounded-xl bg-[#111827] px-8 py-3 font-['Poppins'] text-sm font-medium text-white transition hover:bg-[#1f2937] disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                    {processing ? 'Se trimite...' : 'Trimite cererea'}
+                </button>
             </form>
         </Section>
     );

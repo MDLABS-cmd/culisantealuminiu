@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/sheet';
 import { UserMenuContent } from '@/components/user-menu-content';
 import { cn, toUrl } from '@/lib/utils';
-import { configurator, login } from '@/routes';
+import { login, home } from '@/routes';
 import type { BreadcrumbItem, System } from '@/types';
 
 type Props = {
@@ -44,7 +44,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
     const { auth, activeSystems } = page.props;
     const authUser = auth?.user;
     const systems = normalizeSystems(activeSystems);
-    const configuratorUrl = toUrl(configurator());
+    const homeUrl = toUrl(home());
 
     const currentParams = new URLSearchParams(page.url.split('?')[1] ?? '');
     const selectedSystemId =
@@ -96,7 +96,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                     {systems.map((system, index) => (
                                         <Link
                                             key={`mobile-system-${system.id}-${index}`}
-                                            href={`${configuratorUrl}?system=${system.id}`}
+                                            href={`${homeUrl}?system=${system.id}`}
                                             className={cn(
                                                 'block rounded-md px-3 py-2 text-sm font-medium text-[#111827]',
                                                 selectedSystemId ===
@@ -112,7 +112,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                         </Sheet>
                     </div>
 
-                    <Link href={configurator()} prefetch className="shrink-0">
+                    <Link href={home()} prefetch className="shrink-0">
                         <p
                             className="text-base leading-none font-medium text-[#111827]"
                             style={{ fontFamily: 'Poppins, sans-serif' }}
@@ -131,7 +131,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                         {systems.map((system, index) => (
                             <Link
                                 key={`desktop-system-${system.id}-${index}`}
-                                href={`${configuratorUrl}?system=${system.id}`}
+                                href={`${homeUrl}?system=${system.id}`}
                                 className="relative pb-1 text-[14px] leading-6 font-medium text-black"
                                 style={{ fontFamily: 'Poppins, sans-serif' }}
                             >
@@ -150,7 +150,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                             asChild
                             className="h-9 w-9"
                         >
-                            <Link href={configurator()} preserveScroll>
+                            <Link href={home()} preserveScroll>
                                 <RotateCcw className="h-6 w-6 text-[#111827]" />
                                 <span className="sr-only">Reset</span>
                             </Link>

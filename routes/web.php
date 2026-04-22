@@ -6,11 +6,8 @@ use App\Http\Controllers\SystemController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
-Route::inertia('/', 'welcome', [
-    'canRegister' => Features::enabled(Features::registration()),
-])->name('home');
+Route::inertia('/', 'configurator')->name('home');
 
-Route::inertia('/configurator', 'configurator')->name('configurator');
 Route::get('/systems/{system}/schemas', [SystemController::class, 'schemas'])->name('systems.schemas');
 Route::get('/schemas/{schema}/configurator-options', [SchemaController::class, 'configuratorOptions'])->name('schemas.configurator-options');
 Route::post('/configurator/submissions', [ConfiguratorSubmissionController::class, 'store'])->name('configurator.submissions.store');

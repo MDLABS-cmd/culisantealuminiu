@@ -43,7 +43,7 @@ export default function ConfiguratorSuccess() {
                     )}
 
                     <Link
-                        href="/configurator"
+                        href="/"
                         className="mt-8 inline-block rounded-xl bg-[#111827] px-8 py-3 font-['Poppins'] text-sm font-medium text-white transition hover:bg-[#1f2937]"
                     >
                         Configurație nouă

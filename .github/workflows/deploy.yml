@@ -38,14 +38,7 @@ jobs:
             git fetch origin main --prune
             git reset --hard origin/main
 
-            if command -v composer >/dev/null 2>&1; then
-              composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-            else
-              if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | "$PHP84"
-              fi
-              "$PHP84" composer.phar install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-            fi
+            "$HOME/bin/composer" install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
             "$PHP84" artisan down --retry=60 || true
 

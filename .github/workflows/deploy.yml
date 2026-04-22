@@ -11,7 +11,6 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.CPANEL_USER }}
           key: ${{ secrets.CPANEL_SSH_KEY }}
           script: |
@@ -30,7 +29,7 @@ jobs:
             cd "$APP_PATH"
 
             git config --global --add safe.directory "$APP_PATH"
-            export GIT_SSH_COMMAND='ssh -i ~/.ssh/usi_culisante_deploy -o IdentitiesOnly=yes'
+            export GIT_SSH_COMMAND='ssh -i ~/.ssh/github_deploy -o IdentitiesOnly=yes'
 
             "$PHP84" -v
             node -v
@@ -60,7 +59,6 @@ jobs:
 
             mkdir -p storage bootstrap/cache
             "$PHP84" artisan storage:link || true
-
             chmod 755 "$APP_PATH" "$APP_PATH/public" || true
             chmod 644 "$APP_PATH/.htaccess" "$APP_PATH/public/.htaccess" || true
             chmod -R ug+rwx storage bootstrap/cache
@@ -70,5 +68,4 @@ jobs:
             "$PHP84" artisan config:cache
             "$PHP84" artisan route:cache
             "$PHP84" artisan view:cache
-
             "$PHP84" artisan up || true

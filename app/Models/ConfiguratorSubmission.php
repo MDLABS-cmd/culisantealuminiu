@@ -72,4 +72,9 @@ class ConfiguratorSubmission extends Model
     {
         return $this->hasMany(ConfiguratorSubmissionAccessory::class, 'submission_id');
     }
+
+    public function scopeOfType($query, ConfiguratorSubmissionTypeEnum $type)
+    {
+        return $query->where('type', $type);
+    }
 }

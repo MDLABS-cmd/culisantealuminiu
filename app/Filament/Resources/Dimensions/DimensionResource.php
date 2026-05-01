@@ -18,6 +18,10 @@ class DimensionResource extends Resource
 {
     protected static ?string $model = Dimension::class;
 
+    protected static ?string $modelLabel = 'dimensiune';
+
+    protected static ?string $pluralModelLabel = 'dimensiuni';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

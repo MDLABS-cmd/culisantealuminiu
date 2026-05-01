@@ -30,7 +30,8 @@ export default function DeleteUser() {
                 <div className="relative space-y-0.5 text-red-600 dark:text-red-100">
                     <p className="font-medium">Avertisment</p>
                     <p className="text-sm">
-                        Procedați cu atenție, această acțiune nu poate fi anulată.
+                        Procedați cu atenție, această acțiune nu poate fi
+                        anulată.
                     </p>
                 </div>
 
@@ -48,7 +49,9 @@ export default function DeleteUser() {
                             Ești sigur că vrei să îți ștergi contul?
                         </DialogTitle>
                         <DialogDescription>
-                            Odată ce contul tău este șters, toate resursele și datele sale vor fi șterse permanent. Introdu parola pentru a confirma ștergerea permanentă a contului.
+                            Odată ce contul tău este șters, toate resursele și
+                            datele sale vor fi șterse permanent. Introdu parola
+                            pentru a confirma ștergerea permanentă a contului.
                         </DialogDescription>
 
                         <Form

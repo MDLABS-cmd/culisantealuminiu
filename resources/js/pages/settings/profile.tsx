@@ -31,7 +31,6 @@ export default function Profile({
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-
             <h1 className="sr-only">Setări profil</h1>
             <Head title="Setări profil" />
 
@@ -95,20 +94,25 @@ export default function Profile({
                                     auth.user.email_verified_at === null && (
                                         <div>
                                             <p className="-mt-4 text-sm text-muted-foreground">
-                                                Adresa ta de email nu este verificată.{' '}
+                                                Adresa ta de email nu este
+                                                verificată.{' '}
                                                 <Link
                                                     href={send()}
                                                     as="button"
                                                     className="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
                                                 >
-                                                    Click aici pentru a retrimite emailul de verificare.
+                                                    Click aici pentru a
+                                                    retrimite emailul de
+                                                    verificare.
                                                 </Link>
                                             </p>
 
                                             {status ===
                                                 'verification-link-sent' && (
                                                 <div className="mt-2 text-sm font-medium text-green-600">
-                                                    Un nou link de verificare a fost trimis la adresa ta de email.
+                                                    Un nou link de verificare a
+                                                    fost trimis la adresa ta de
+                                                    email.
                                                 </div>
                                             )}
                                         </div>

@@ -18,6 +18,10 @@ class MaterialResource extends Resource
 {
     protected static ?string $model = Material::class;
 
+    protected static ?string $modelLabel = 'material';
+
+    protected static ?string $pluralModelLabel = 'materiale';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

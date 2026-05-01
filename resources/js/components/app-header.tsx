@@ -59,22 +59,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 </SheetTitle>
                                 <SheetHeader className="text-left">
                                     <div>
-                                        <p
-                                            className="text-base leading-none font-medium text-[#111827]"
-                                            style={{
-                                                fontFamily:
-                                                    'Poppins, sans-serif',
-                                            }}
-                                        >
+                                        <p className="poppins-medium text-base leading-none text-[#111827]">
                                             {brandTitle}
                                         </p>
-                                        <p
-                                            className="mt-1 text-[12px] leading-none text-[#111827]"
-                                            style={{
-                                                fontFamily:
-                                                    'Poppins, sans-serif',
-                                            }}
-                                        >
+                                        <p className="poppins-regular mt-1 text-[12px] leading-none text-[#111827]">
                                             {brandSubtitle}
                                         </p>
                                     </div>
@@ -91,16 +79,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                     </div>
 
                     <Link href={home()} prefetch className="shrink-0">
-                        <p
-                            className="text-base leading-none font-medium text-[#111827]"
-                            style={{ fontFamily: 'Poppins, sans-serif' }}
-                        >
+                        <p className="poppins-medium text-base leading-none text-[#111827]">
                             {brandTitle}
                         </p>
-                        <p
-                            className="mt-1 text-[12px] leading-none text-[#111827]"
-                            style={{ fontFamily: 'Poppins, sans-serif' }}
-                        >
+                        <p className="poppins-regular mt-1 text-[12px] leading-none text-[#111827]">
                             {brandSubtitle}
                         </p>
                     </Link>

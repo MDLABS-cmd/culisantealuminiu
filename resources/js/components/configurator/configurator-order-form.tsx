@@ -36,7 +36,7 @@ function Field({ id, label, required, children, className }: FieldProps) {
         <div className={cn('flex flex-col gap-2', className)}>
             <Label
                 htmlFor={id}
-                className="font-['Poppins'] text-sm font-medium text-[#111827]"
+                className="poppins-medium text-sm text-[#111827]"
             >
                 {label}
                 {required && <span className="text-[#ef4444]"> *</span>}
@@ -163,7 +163,7 @@ export default function ConfiguratorOrderForm() {
                             }
                         />
                         {errors['order.company_name'] && (
-                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                            <p className="poppins-regular text-xs text-[#ef4444]">
                                 {errors['order.company_name']}
                             </p>
                         )}
@@ -183,7 +183,7 @@ export default function ConfiguratorOrderForm() {
                             }
                         />
                         {errors['order.phone'] && (
-                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                            <p className="poppins-regular text-xs text-[#ef4444]">
                                 {errors['order.phone']}
                             </p>
                         )}
@@ -202,7 +202,7 @@ export default function ConfiguratorOrderForm() {
                             }
                         />
                         {errors['order.first_name'] && (
-                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                            <p className="poppins-regular text-xs text-[#ef4444]">
                                 {errors['order.first_name']}
                             </p>
                         )}
@@ -221,7 +221,7 @@ export default function ConfiguratorOrderForm() {
                             }
                         />
                         {errors['order.last_name'] && (
-                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                            <p className="poppins-regular text-xs text-[#ef4444]">
                                 {errors['order.last_name']}
                             </p>
                         )}
@@ -246,7 +246,7 @@ export default function ConfiguratorOrderForm() {
                             }
                         />
                         {errors['order.email'] && (
-                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                            <p className="poppins-regular text-xs text-[#ef4444]">
                                 {errors['order.email']}
                             </p>
                         )}
@@ -270,7 +270,7 @@ export default function ConfiguratorOrderForm() {
                             }
                         />
                         {errors['order.address'] && (
-                            <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                            <p className="poppins-regular text-xs text-[#ef4444]">
                                 {errors['order.address']}
                             </p>
                         )}
@@ -293,7 +293,7 @@ export default function ConfiguratorOrderForm() {
                                     event.target.value,
                                 )
                             }
-                            className="min-h-28 w-full rounded-xl border border-[#e5e7eb] bg-white px-6 py-3 font-['Poppins'] text-sm text-[#111827] transition-all outline-none placeholder:text-[#9ca3af] focus-visible:border-[#3b82f6] focus-visible:ring-1 focus-visible:ring-[#3b82f6]"
+                            className="poppins-regular min-h-28 w-full rounded-xl border border-[#e5e7eb] bg-white px-6 py-3 text-sm text-[#111827] transition-all outline-none placeholder:text-[#9ca3af] focus-visible:border-[#3b82f6] focus-visible:ring-1 focus-visible:ring-[#3b82f6]"
                         />
                     </Field>
                 </div>
@@ -316,11 +316,11 @@ export default function ConfiguratorOrderForm() {
                             <span className="space-y-1">
                                 <Label
                                     htmlFor="createAccount"
-                                    className="font-['Poppins'] text-sm font-medium text-[#111827]"
+                                    className="poppins-medium text-sm text-[#111827]"
                                 >
                                     Creează-mi și un cont
                                 </Label>
-                                <span className="block font-['Poppins'] text-sm text-[#6b7280]">
+                                <span className="poppins-regular block text-sm text-[#6b7280]">
                                     Vei putea reveni ulterior la configurațiile
                                     tale și la istoricul cererilor.
                                 </span>
@@ -346,7 +346,7 @@ export default function ConfiguratorOrderForm() {
                                         }
                                     />
                                     {errors['order.password'] && (
-                                        <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                        <p className="poppins-regular text-xs text-[#ef4444]">
                                             {errors['order.password']}
                                         </p>
                                     )}
@@ -373,7 +373,7 @@ export default function ConfiguratorOrderForm() {
                                         }
                                     />
                                     {errors['order.password_confirmation'] && (
-                                        <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                        <p className="poppins-regular text-xs text-[#ef4444]">
                                             {
                                                 errors[
                                                     'order.password_confirmation'
@@ -390,7 +390,7 @@ export default function ConfiguratorOrderForm() {
                 <button
                     type="submit"
                     disabled={processing}
-                    className="w-full rounded-xl bg-[#111827] px-8 py-3 font-['Poppins'] text-sm font-medium text-white transition hover:bg-[#1f2937] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="poppins-medium w-full rounded-xl bg-[#111827] px-8 py-3 text-sm text-white transition hover:bg-[#1f2937] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                     {processing ? 'Se trimite...' : 'Trimite cererea'}
                 </button>

@@ -18,6 +18,10 @@ class SystemResource extends Resource
 {
     protected static ?string $model = System::class;
 
+    protected static ?string $modelLabel = 'sistem';
+
+    protected static ?string $pluralModelLabel = 'sisteme';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

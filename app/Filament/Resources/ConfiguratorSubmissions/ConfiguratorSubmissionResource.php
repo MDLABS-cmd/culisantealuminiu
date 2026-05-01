@@ -15,6 +15,10 @@ class ConfiguratorSubmissionResource extends Resource
 {
     protected static ?string $model = ConfiguratorSubmission::class;
 
+    protected static ?string $modelLabel = 'cerere';
+
+    protected static ?string $pluralModelLabel = 'cereri';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function table(Table $table): Table

@@ -4,6 +4,16 @@
     @apply h-auto w-fit rounded-2xl bg-gray-500 p-0;
 }
 
+body.fi-panel-admin {
+    --admin-sidebar-offset: 2rem;
+}
+
+@media (min-width: 64rem) {
+    body.fi-panel-admin .fi-sidebar.fi-main-sidebar {
+        margin-top: var(--admin-sidebar-offset);
+    }
+}
+
 .fi-sidebar-nav {
     @apply flex flex-col gap-0 p-2.5!;
     scrollbar-gutter: auto;
@@ -39,22 +49,26 @@
 
 .fi-sidebar-item.fi-active {
     @apply bg-gray-400 text-white;
-    background-color: rgb(156, 163, 175) !important;
+    background-color: rgb(156, 163, 175);
 }
 
-.fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
-    background-color: rgb(156, 163, 175) !important;
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: rgb(156, 163, 175);
 }
 
-.fi-sidebar-item.fi-active a,
-.fi-sidebar-item.fi-active span {
+.fi-sidebar .fi-sidebar-item.fi-active a,
+.fi-sidebar .fi-sidebar-item.fi-active span {
     @apply text-white;
-    background-color: transparent !important;
+    background-color: transparent;
 }
 
-.fi-sidebar-item.fi-sidebar-item-has-url > .fi-sidebar-item-btn:hover,
-.fi-sidebar-item.fi-sidebar-item-has-url > .fi-sidebar-item-btn:focus-visible {
-    background-color: transparent !important;
+.fi-sidebar
+    .fi-sidebar-item.fi-sidebar-item-has-url
+    > .fi-sidebar-item-btn:hover,
+.fi-sidebar
+    .fi-sidebar-item.fi-sidebar-item-has-url
+    > .fi-sidebar-item-btn:focus-visible {
+    background-color: transparent;
 }
 
 .fi-sidebar-item:last-child {

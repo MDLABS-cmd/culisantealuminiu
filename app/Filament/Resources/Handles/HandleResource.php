@@ -18,6 +18,10 @@ class HandleResource extends Resource
 {
     protected static ?string $model = Handle::class;
 
+    protected static ?string $modelLabel = 'mâner';
+
+    protected static ?string $pluralModelLabel = 'mânere';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

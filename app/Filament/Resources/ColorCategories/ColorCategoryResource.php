@@ -18,6 +18,10 @@ class ColorCategoryResource extends Resource
 {
     protected static ?string $model = ColorCategory::class;
 
+    protected static ?string $modelLabel = 'categorie de culori';
+
+    protected static ?string $pluralModelLabel = 'categorii de culori';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

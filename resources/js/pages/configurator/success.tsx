@@ -26,25 +26,25 @@ export default function ConfiguratorSuccess() {
                         </svg>
                     </div>
 
-                    <h1 className="font-['Poppins'] text-2xl font-semibold text-[#111827]">
+                    <h1 className="poppins-semibold text-2xl text-[#111827]">
                         {isOrder ? 'Comandă trimisă!' : 'Cerere trimisă!'}
                     </h1>
 
-                    <p className="mt-3 font-['Poppins'] text-sm text-[#6b7280]">
+                    <p className="poppins-regular mt-3 text-sm text-[#6b7280]">
                         {isOrder
                             ? 'Comanda ta a fost înregistrată cu succes. Te vom contacta în curând pentru confirmare.'
                             : 'Cererea ta de ofertă a fost înregistrată cu succes. Te vom contacta în curând cu detaliile.'}
                     </p>
 
                     {flash.submissionId && (
-                        <p className="mt-2 font-['Poppins'] text-xs text-[#9ca3af]">
+                        <p className="poppins-regular mt-2 text-xs text-[#9ca3af]">
                             Număr referință: #{flash.submissionId}
                         </p>
                     )}
 
                     <Link
                         href="/"
-                        className="mt-8 inline-block rounded-xl bg-[#111827] px-8 py-3 font-['Poppins'] text-sm font-medium text-white transition hover:bg-[#1f2937]"
+                        className="poppins-medium mt-8 inline-block rounded-xl bg-[#111827] px-8 py-3 text-sm text-white transition hover:bg-[#1f2937]"
                     >
                         Configurație nouă
                     </Link>

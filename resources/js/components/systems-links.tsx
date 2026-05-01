@@ -61,8 +61,7 @@ export function SystemsLinks({
                     <Link
                         key={`desktop-system-${system.id}`}
                         href={`${homeUrl}?system=${system.id}`}
-                        className="relative pb-1 text-[14px] leading-6 font-medium text-black"
-                        style={{ fontFamily: 'Poppins, sans-serif' }}
+                        className="poppins-medium relative pb-1 text-[14px] leading-6 text-black"
                     >
                         {system.name}
                         {selectedSystemId === system.id && (

@@ -52,7 +52,7 @@ export function SchemaCard({
 
             {/* Text Section */}
             <div className="w-full text-center">
-                <p className="font-['Poppins'] text-[16px] leading-normal font-medium text-[#111827]">
+                <p className="poppins-medium text-[16px] leading-normal text-[#111827]">
                     {schema.name}
                 </p>
             </div>
@@ -65,7 +65,7 @@ export function SchemaCard({
                     onSelect(schema.id);
                 }}
                 disabled={isLoading}
-                className={`rounded-[14px] px-6 py-2 font-['Poppins'] text-[14px] leading-normal font-normal text-white shadow-[0_1px_4px_0_rgba(12,12,13,0.05)] transition-all duration-200 ${
+                className={`poppins-regular rounded-[14px] px-6 py-2 text-[14px] leading-normal text-white shadow-[0_1px_4px_0_rgba(12,12,13,0.05)] transition-all duration-200 ${
                     isSelected
                         ? 'bg-[#4b5563] hover:bg-[#3f4854]'
                         : 'bg-[#6b7280] hover:bg-[#56626f]'

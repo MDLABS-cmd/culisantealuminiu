@@ -18,6 +18,10 @@ class ColorResource extends Resource
 {
     protected static ?string $model = Color::class;
 
+    protected static ?string $modelLabel = 'culoare';
+
+    protected static ?string $pluralModelLabel = 'culori';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

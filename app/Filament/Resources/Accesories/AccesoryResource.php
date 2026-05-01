@@ -18,6 +18,10 @@ class AccesoryResource extends Resource
 {
     protected static ?string $model = Accesory::class;
 
+    protected static ?string $modelLabel = 'accesoriu';
+
+    protected static ?string $pluralModelLabel = 'accesorii';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

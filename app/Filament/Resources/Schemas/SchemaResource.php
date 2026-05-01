@@ -18,6 +18,10 @@ class SchemaResource extends Resource
 {
     protected static ?string $model = Schema1::class;
 
+    protected static ?string $modelLabel = 'schemă';
+
+    protected static ?string $pluralModelLabel = 'scheme';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema

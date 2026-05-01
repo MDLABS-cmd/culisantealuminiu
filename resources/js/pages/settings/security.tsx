@@ -52,7 +52,6 @@ export default function Security({
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-
             <h1 className="sr-only">Setări securitate</h1>
             <Head title="Setări securitate" />
 
@@ -177,7 +176,9 @@ export default function Security({
                         {twoFactorEnabled ? (
                             <div className="flex flex-col items-start justify-start space-y-4">
                                 <p className="text-sm text-muted-foreground">
-                                    Vi se va solicita un pin sigur în timpul conectării, pe care îl puteți obține din aplicația TOTP de pe telefon.
+                                    Vi se va solicita un pin sigur în timpul
+                                    conectării, pe care îl puteți obține din
+                                    aplicația TOTP de pe telefon.
                                 </p>
 
                                 <div className="relative inline">
@@ -203,7 +204,10 @@ export default function Security({
                         ) : (
                             <div className="flex flex-col items-start justify-start space-y-4">
                                 <p className="text-sm text-muted-foreground">
-                                    Când activezi autentificarea cu doi factori, vi se va solicita un pin sigur în timpul conectării. Acesta poate fi obținut din aplicația TOTP de pe telefon.
+                                    Când activezi autentificarea cu doi factori,
+                                    vi se va solicita un pin sigur în timpul
+                                    conectării. Acesta poate fi obținut din
+                                    aplicația TOTP de pe telefon.
                                 </p>
 
                                 <div>

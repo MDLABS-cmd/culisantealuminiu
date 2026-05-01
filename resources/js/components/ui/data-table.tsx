@@ -201,7 +201,7 @@ function DataTable<TData extends Record<string, unknown>>({
     // ── Render ───────────────────────────────────────────────────────────────
 
     return (
-        <div className={cn("flex flex-col gap-3 font-['Poppins',sans-serif]", className)}>
+        <div className={cn("poppins-regular flex flex-col gap-3", className)}>
             {/* Filter bar */}
             {!hideFilter && (
                 <div className="flex items-center gap-2">

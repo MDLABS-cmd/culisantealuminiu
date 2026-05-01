@@ -111,11 +111,11 @@ export function ConfigurationSummary({
 
     return (
         <aside className="rounded-[20px] bg-white p-6 md:p-6 lg:sticky lg:top-6">
-            <p className="font-['Poppins'] text-[16px] leading-normal font-bold text-[#111827] uppercase">
+            <p className="poppins-bold text-[16px] leading-normal text-[#111827] uppercase">
                 Rezumat configurație
             </p>
 
-            <dl className="mt-6 space-y-4 font-['Poppins'] text-[14px] leading-normal">
+            <dl className="poppins-regular mt-6 space-y-4 text-[14px] leading-normal">
                 <div className="flex items-center gap-2">
                     <dt className="text-[#6b7280]">Sistem</dt>
                     <dd className="text-[#111827]">{selectedSystemLabel}</dd>
@@ -155,17 +155,17 @@ export function ConfigurationSummary({
             </dl>
 
             {/* <div className="mt-8">
-                <p className="font-['Poppins'] text-[16px] leading-normal font-medium text-[#111827]">
+                <p className="poppins-medium text-[16px] leading-normal text-[#111827]">
                     Oferta personalizata
                 </p>
-                <p className="mt-6 font-['Poppins'] text-[14px] leading-normal text-[#6b7280]">
+                <p className="poppins-regular mt-6 text-[14px] leading-normal text-[#6b7280]">
                     Cererea ta a fost inregistrata pentru : {customOfferLabel}
                 </p>
             </div> */}
 
             <div className="mt-8 h-px w-full bg-[#6b7280]" />
 
-            <div className="mt-6 flex w-full flex-col items-end gap-2 font-['Poppins'] leading-normal text-[#111827]">
+            <div className="poppins-regular mt-6 flex w-full flex-col items-end gap-2 leading-normal text-[#111827]">
                 <p className="text-[12px]">PREȚ FĂRĂ TVA</p>
                 <p className="text-[36px] leading-none">
                     {summary.total.toFixed(0)}€
@@ -175,7 +175,7 @@ export function ConfigurationSummary({
             <button
                 type="button"
                 disabled={!canContinue}
-                className="mt-8 w-full rounded-[14px] bg-[#111827] px-10 py-2 font-['Poppins'] text-[14px] leading-normal text-white transition disabled:cursor-not-allowed disabled:opacity-50"
+                className="poppins-regular mt-8 w-full rounded-[14px] bg-[#111827] px-10 py-2 text-[14px] leading-normal text-white transition disabled:cursor-not-allowed disabled:opacity-50"
                 onClick={handleSummaryAction}
             >
                 Comandă acum

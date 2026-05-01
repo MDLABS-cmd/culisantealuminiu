@@ -60,7 +60,9 @@ export default function TwoFactorRecoveryCodes({
                     Coduri de recuperare 2FA
                 </CardTitle>
                 <CardDescription>
-                    Codurile de recuperare îți permit să recapeți accesul dacă îți pierzi dispozitivul 2FA. Păstrează-le într-un manager de parole sigur.
+                    Codurile de recuperare îți permit să recapeți accesul dacă
+                    îți pierzi dispozitivul 2FA. Păstrează-le într-un manager de
+                    parole sigur.
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -75,7 +77,8 @@ export default function TwoFactorRecoveryCodes({
                             className="size-4"
                             aria-hidden="true"
                         />
-                        {codesAreVisible ? 'Ascunde' : 'Vizualizează'} codurile de recuperare
+                        {codesAreVisible ? 'Ascunde' : 'Vizualizează'} codurile
+                        de recuperare
                     </Button>
 
                     {canRegenerateCodes && (
@@ -144,7 +147,10 @@ export default function TwoFactorRecoveryCodes({
 
                                 <div className="text-xs text-muted-foreground select-none">
                                     <p id="regenerate-warning">
-                                        Fiecare cod de recuperare poate fi utilizat o singură dată și va fi eliminat după utilizare. Dacă ai nevoie de mai multe, apasă{' '}
+                                        Fiecare cod de recuperare poate fi
+                                        utilizat o singură dată și va fi
+                                        eliminat după utilizare. Dacă ai nevoie
+                                        de mai multe, apasă{' '}
                                         <span className="font-bold">
                                             Regenerează coduri
                                         </span>{' '}

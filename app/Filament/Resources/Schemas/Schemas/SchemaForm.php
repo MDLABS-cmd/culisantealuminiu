@@ -27,7 +27,7 @@ class SchemaForm
                 TextInput::make('name')
                     ->required(),
                 FileUpload::make('image')
-                    ->label('Image')
+                    ->label('Imagine')
                     ->image()
                     ->disk('public')
                     ->directory('schemas')
@@ -48,18 +48,18 @@ class SchemaForm
                     ->relationship()
                     ->schema([
                         TextInput::make('width')
-                            ->label('Width')
+                            ->label('Lățime')
                             ->numeric()
                             ->required(),
                         TextInput::make('height')
-                            ->label('Height')
+                            ->label('Înălțime')
                             ->numeric()
                             ->required(),
                         Toggle::make('active')
                             ->required(),
                     ])
                     ->columnSpanFull()
-                    ->addActionLabel('Add Dimension'),
+                    ->addActionLabel('Adaugă dimensiune'),
             ]);
     }
 }

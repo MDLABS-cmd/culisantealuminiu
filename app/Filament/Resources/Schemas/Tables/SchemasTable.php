@@ -18,15 +18,15 @@ class SchemasTable
             ->modifyQueryUsing(fn($query) => $query->with(['dimensions', 'files']))
             ->columns([
                 TextColumn::make('name')
-                    ->label('Name'),
+                    ->label('Nume'),
                 TextColumn::make('price_type')
-                    ->label('Price Type'),
+                    ->label('Tip preț'),
                 ImageColumn::make('image')
-                    ->label('Image')
+                    ->label('Imagine')
                     ->getStateUsing(fn($record) => $record->getFirstFileUrl('image'))
                     ->imageSize(36),
                 IconColumn::make('active')
-                    ->label('Active')
+                    ->label('Activ')
                     ->boolean(),
             ])
             ->filters([

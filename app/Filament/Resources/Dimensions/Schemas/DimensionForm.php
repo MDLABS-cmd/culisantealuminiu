@@ -18,11 +18,11 @@ class DimensionForm
                     ->required()
                     ->preload(),
                 TextInput::make('width')
-                    ->label('Width')
+                    ->label('Lățime')
                     ->numeric()
                     ->required(),
                 TextInput::make('height')
-                    ->label('Height')
+                    ->label('Înălțime')
                     ->numeric()
                     ->required(),
                 Toggle::make('active')

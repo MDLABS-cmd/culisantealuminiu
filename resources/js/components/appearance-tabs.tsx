@@ -12,7 +12,7 @@ export default function AppearanceToggleTab({
     const { appearance, updateAppearance } = useAppearance();
 
     const tabs: { value: Appearance; icon: LucideIcon; label: string }[] = [
-        { value: 'light', icon: Sun, label: 'Light' },
+        { value: 'light', icon: Sun, label: 'Luminos' },
     ];
 
     return (

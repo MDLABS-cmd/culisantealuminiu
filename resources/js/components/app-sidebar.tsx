@@ -1,43 +1,38 @@
-import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import { Link, usePage } from '@inertiajs/react';
+import { LayoutGrid } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
-import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
+import { normalizeSystems } from '@/components/systems-links';
 import {
     Sidebar,
     SidebarContent,
     SidebarFooter,
+    SidebarGroup,
+    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { toUrl } from '@/lib/utils';
 import { dashboard } from '@/routes';
+import { home } from '@/routes';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Tablou de bord',
         href: dashboard(),
         icon: LayoutGrid,
     },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
-    },
-];
-
 export function AppSidebar() {
+    const page = usePage();
+    const systems = normalizeSystems(page.props.activeSystems);
+    const homeUrl = toUrl(home());
+
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
@@ -54,10 +49,36 @@ export function AppSidebar() {
 
             <SidebarContent>
                 <NavMain items={mainNavItems} />
+
+                {systems.length > 0 && (
+                    <SidebarGroup className="px-2 py-2">
+                        <SidebarGroupLabel>Sisteme</SidebarGroupLabel>
+                        <SidebarMenu>
+                            {systems.map((system) => (
+                                <SidebarMenuItem
+                                    key={`config-system-${system.id}`}
+                                >
+                                    <SidebarMenuButton
+                                        asChild
+                                        tooltip={{
+                                            children: `Configurează ${system.name}`,
+                                        }}
+                                    >
+                                        <Link
+                                            href={`${homeUrl}?system=${system.id}`}
+                                            className="truncate"
+                                        >
+                                            {system.name}
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroup>
+                )}
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>

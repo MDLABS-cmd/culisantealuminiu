@@ -10,15 +10,14 @@ import { send } from '@/routes/verification';
 export default function VerifyEmail({ status }: { status?: string }) {
     return (
         <AuthLayout
-            title="Verify email"
-            description="Please verify your email address by clicking on the link we just emailed to you."
+            title="Verifică emailul"
+            description="Vă rugăm să vă verificați adresa de email apăsând pe linkul pe care tocmai vi l-am trimis."
         >
-            <Head title="Email verification" />
+            <Head title="Verificare email" />
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">
-                    A new verification link has been sent to the email address
-                    you provided during registration.
+                    Un nou link de verificare a fost trimis la adresa de email furnizată la înregistrare.
                 </div>
             )}
 
@@ -27,14 +26,14 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     <>
                         <Button disabled={processing} variant="secondary">
                             {processing && <Spinner />}
-                            Resend verification email
+                            Retrimite emailul de verificare
                         </Button>
 
                         <TextLink
                             href={logout()}
                             className="mx-auto block text-sm"
                         >
-                            Log out
+                            Deconectare
                         </TextLink>
                     </>
                 )}

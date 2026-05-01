@@ -17,13 +17,13 @@ class DimensionsTable
             ->modifyQueryUsing(fn($query) => $query->with('schema'))
             ->columns([
                 TextColumn::make('schema.name')
-                    ->label('Schema'),
+                    ->label('Schemă'),
                 TextColumn::make('width')
-                    ->label('Width'),
+                    ->label('Lățime'),
                 TextColumn::make('height')
-                    ->label('Height'),
+                    ->label('Înălțime'),
                 IconColumn::make('active')
-                    ->label('Active')
+                    ->label('Activ')
                     ->boolean(),
             ])
             ->filters([

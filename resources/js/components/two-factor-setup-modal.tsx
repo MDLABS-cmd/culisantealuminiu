@@ -96,7 +96,7 @@ function TwoFactorSetupStep({
                     <div className="relative flex w-full items-center justify-center">
                         <div className="absolute inset-0 top-1/2 h-px w-full bg-border" />
                         <span className="relative bg-card px-2 py-1">
-                            or, enter the code manually
+                            sau, introdu codul manual
                         </span>
                     </div>
 
@@ -201,7 +201,7 @@ function TwoFactorVerificationStep({
                                 onClick={onBack}
                                 disabled={processing}
                             >
-                                Back
+                                Înapoi
                             </Button>
                             <Button
                                 type="submit"
@@ -210,7 +210,7 @@ function TwoFactorVerificationStep({
                                     processing || code.length < OTP_MAX_LENGTH
                                 }
                             >
-                                Confirm
+                                Confirmă
                             </Button>
                         </div>
                     </div>
@@ -253,27 +253,27 @@ export default function TwoFactorSetupModal({
     }>(() => {
         if (twoFactorEnabled) {
             return {
-                title: 'Two-factor authentication enabled',
+                title: 'Autentificare cu doi factori activată',
                 description:
-                    'Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.',
-                buttonText: 'Close',
+                    'Autentificarea cu doi factori este acum activată. Scanează codul QR sau introdu cheia de configurare în aplicația ta de autentificare.',
+                buttonText: 'Închide',
             };
         }
 
         if (showVerificationStep) {
             return {
-                title: 'Verify authentication code',
+                title: 'Verifică codul de autentificare',
                 description:
-                    'Enter the 6-digit code from your authenticator app',
-                buttonText: 'Continue',
+                    'Introdu codul de 6 cifre din aplicația ta de autentificare',
+                buttonText: 'Continuă',
             };
         }
 
         return {
-            title: 'Enable two-factor authentication',
+            title: 'Activează autentificarea cu doi factori',
             description:
-                'To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app',
-            buttonText: 'Continue',
+                'Pentru a finaliza activarea autentificării cu doi factori, scanează codul QR sau introdu cheia de configurare în aplicația ta de autentificare',
+            buttonText: 'Continuă',
         };
     }, [twoFactorEnabled, showVerificationStep]);
 

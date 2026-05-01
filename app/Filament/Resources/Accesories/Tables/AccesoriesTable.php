@@ -21,7 +21,7 @@ class AccesoriesTable
                 TextColumn::make('price')
                     ->sortable(),
                 TextColumn::make('schemas.name')
-                    ->label('Schemas')
+                    ->label('Scheme')
                     ->badge()
                     ->wrap(),
                 IconColumn::make('active')

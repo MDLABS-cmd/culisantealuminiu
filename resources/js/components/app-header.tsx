@@ -1,6 +1,7 @@
 import { Link, usePage } from '@inertiajs/react';
 import { CircleUserRound, Menu, RotateCcw } from 'lucide-react';
 import { Breadcrumbs } from '@/components/breadcrumbs';
+import { SystemsLinks, normalizeSystems } from '@/components/systems-links';
 import { Button } from '@/components/ui/button';
 import {
     DropdownMenu,
@@ -15,9 +16,9 @@ import {
     SheetTrigger,
 } from '@/components/ui/sheet';
 import { UserMenuContent } from '@/components/user-menu-content';
-import { cn, toUrl } from '@/lib/utils';
+import { toUrl } from '@/lib/utils';
 import { login, home } from '@/routes';
-import type { BreadcrumbItem, System } from '@/types';
+import type { BreadcrumbItem } from '@/types';
 
 type Props = {
     breadcrumbs?: BreadcrumbItem[];
@@ -25,19 +26,6 @@ type Props = {
 
 const brandTitle = 'NZEB WINDOWS';
 const brandSubtitle = 'CULISANTE CU RIDICARE DIN ALUMINIU';
-
-function normalizeSystems(input: unknown): System[] {
-    if (!Array.isArray(input)) {
-        return [];
-    }
-
-    return (input as System[]).filter(
-        (system): system is System =>
-            Boolean(system) &&
-            typeof system.id === 'number' &&
-            Number.isFinite(system.id),
-    );
-}
 
 export function AppHeader({ breadcrumbs = [] }: Props) {
     const page = usePage();
@@ -92,22 +80,12 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                     </div>
                                 </SheetHeader>
 
-                                <div className="mt-6 space-y-2">
-                                    {systems.map((system, index) => (
-                                        <Link
-                                            key={`mobile-system-${system.id}-${index}`}
-                                            href={`${homeUrl}?system=${system.id}`}
-                                            className={cn(
-                                                'block rounded-md px-3 py-2 text-sm font-medium text-[#111827]',
-                                                selectedSystemId ===
-                                                    system.id &&
-                                                    'bg-[#111827] text-white',
-                                            )}
-                                        >
-                                            {system.name}
-                                        </Link>
-                                    ))}
-                                </div>
+                                <SystemsLinks
+                                    variant="mobile"
+                                    systems={systems}
+                                    homeUrl={homeUrl}
+                                    selectedSystemId={selectedSystemId}
+                                />
                             </SheetContent>
                         </Sheet>
                     </div>
@@ -127,21 +105,12 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                         </p>
                     </Link>
 
-                    <div className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-5 lg:flex">
-                        {systems.map((system, index) => (
-                            <Link
-                                key={`desktop-system-${system.id}-${index}`}
-                                href={`${homeUrl}?system=${system.id}`}
-                                className="relative pb-1 text-[14px] leading-6 font-medium text-black"
-                                style={{ fontFamily: 'Poppins, sans-serif' }}
-                            >
-                                {system.name}
-                                {selectedSystemId === system.id && (
-                                    <span className="absolute bottom-0 left-0 h-0.75 w-full bg-[#111827]" />
-                                )}
-                            </Link>
-                        ))}
-                    </div>
+                    <SystemsLinks
+                        variant="desktop"
+                        systems={systems}
+                        homeUrl={homeUrl}
+                        selectedSystemId={selectedSystemId}
+                    />
 
                     <div className="ml-auto flex items-center gap-2">
                         <Button
@@ -152,7 +121,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                         >
                             <Link href={home()} preserveScroll>
                                 <RotateCcw className="h-6 w-6 text-[#111827]" />
-                                <span className="sr-only">Reset</span>
+                                <span className="sr-only">Resetează</span>
                             </Link>
                         </Button>
 
@@ -166,7 +135,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                     >
                                         <CircleUserRound className="h-7 w-7 text-[#111827]" />
                                         <span className="sr-only">
-                                            User menu
+                                            Meniu utilizator
                                         </span>
                                     </Button>
                                 </DropdownMenuTrigger>
@@ -186,7 +155,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                             >
                                 <Link href={login()}>
                                     <CircleUserRound className="h-7 w-7 text-[#111827]" />
-                                    <span className="sr-only">Login</span>
+                                    <span className="sr-only">Conectare</span>
                                 </Link>
                             </Button>
                         )}

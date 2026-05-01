@@ -99,7 +99,7 @@ class Pricing extends Page
         app(PricingSaveService::class)->savePricingRows($this->rows);
 
         Notification::make()
-            ->title('Pricing saved')
+            ->title('Prețuri salvate')
             ->success()
             ->send();
     }
@@ -111,7 +111,7 @@ class Pricing extends Page
         $settings->save();
 
         Notification::make()
-            ->title('Saved successfully')
+            ->title('Salvat cu succes')
             ->success()
             ->send();
     }

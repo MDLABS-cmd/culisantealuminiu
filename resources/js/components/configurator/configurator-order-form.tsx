@@ -1,4 +1,5 @@
 import { router } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import { store as submissionStore } from '@/actions/App/Http/Controllers/ConfiguratorSubmissionController';
 import { Input } from '@/components/ui/input';
@@ -46,6 +47,12 @@ function Field({ id, label, required, children, className }: FieldProps) {
 }
 
 export default function ConfiguratorOrderForm() {
+    const page = usePage();
+    const authUser =
+        (page.props.auth as { user?: { id?: number } | null } | undefined)
+            ?.user ?? null;
+    const isAuthenticated = Boolean(authUser?.id);
+
     const { orderState, setOrderState, state, summary } = useConfigurator();
     const [processing, setProcessing] = useState(false);
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -97,9 +104,13 @@ export default function ConfiguratorOrderForm() {
                 phone: orderState.phone,
                 address: orderState.address,
                 observations: orderState.observations,
-                create_account: orderState.createAccount,
-                password: orderState.password,
-                password_confirmation: orderState.confirmPassword,
+                create_account: isAuthenticated
+                    ? false
+                    : orderState.createAccount,
+                password: isAuthenticated ? null : orderState.password,
+                password_confirmation: isAuthenticated
+                    ? null
+                    : orderState.confirmPassword,
             },
             submission: {
                 is_custom: selectedSystem?.is_custom ?? false,
@@ -287,86 +298,94 @@ export default function ConfiguratorOrderForm() {
                     </Field>
                 </div>
 
-                <div className="rounded-xl border border-[#e5e7eb] bg-[#f9fafb] p-4">
-                    <label className="flex items-start gap-3">
-                        <input
-                            id="createAccount"
-                            name="createAccount"
-                            type="checkbox"
-                            checked={orderState.createAccount}
-                            onChange={(event) =>
-                                handleCreateAccountChange(event.target.checked)
-                            }
-                            className="mt-1 h-4 w-4 rounded border-[#d1d5db] text-[#111827] focus:ring-[#3b82f6]"
-                        />
-                        <span className="space-y-1">
-                            <Label
-                                htmlFor="createAccount"
-                                className="font-['Poppins'] text-sm font-medium text-[#111827]"
-                            >
-                                Creează-mi și un cont
-                            </Label>
-                            <span className="block font-['Poppins'] text-sm text-[#6b7280]">
-                                Vei putea reveni ulterior la configurațiile tale
-                                și la istoricul cererilor.
+                {!isAuthenticated && (
+                    <div className="rounded-xl border border-[#e5e7eb] bg-[#f9fafb] p-4">
+                        <label className="flex items-start gap-3">
+                            <input
+                                id="createAccount"
+                                name="createAccount"
+                                type="checkbox"
+                                checked={orderState.createAccount}
+                                onChange={(event) =>
+                                    handleCreateAccountChange(
+                                        event.target.checked,
+                                    )
+                                }
+                                className="mt-1 h-4 w-4 rounded border-[#d1d5db] text-[#111827] focus:ring-[#3b82f6]"
+                            />
+                            <span className="space-y-1">
+                                <Label
+                                    htmlFor="createAccount"
+                                    className="font-['Poppins'] text-sm font-medium text-[#111827]"
+                                >
+                                    Creează-mi și un cont
+                                </Label>
+                                <span className="block font-['Poppins'] text-sm text-[#6b7280]">
+                                    Vei putea reveni ulterior la configurațiile
+                                    tale și la istoricul cererilor.
+                                </span>
                             </span>
-                        </span>
-                    </label>
+                        </label>
 
-                    {orderState.createAccount && (
-                        <div className="mt-4 grid gap-4 md:grid-cols-2">
-                            <Field id="password" label="Parolă" required>
-                                <Input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="new-password"
-                                    placeholder="Alege o parolă"
-                                    required={orderState.createAccount}
-                                    value={orderState.password ?? ''}
-                                    onChange={(event) =>
-                                        updateNullableTextField(
-                                            'password',
-                                            event.target.value,
-                                        )
-                                    }
-                                />
-                                {errors['order.password'] && (
-                                    <p className="font-['Poppins'] text-xs text-[#ef4444]">
-                                        {errors['order.password']}
-                                    </p>
-                                )}
-                            </Field>
+                        {orderState.createAccount && (
+                            <div className="mt-4 grid gap-4 md:grid-cols-2">
+                                <Field id="password" label="Parolă" required>
+                                    <Input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        autoComplete="new-password"
+                                        placeholder="Alege o parolă"
+                                        required={orderState.createAccount}
+                                        value={orderState.password ?? ''}
+                                        onChange={(event) =>
+                                            updateNullableTextField(
+                                                'password',
+                                                event.target.value,
+                                            )
+                                        }
+                                    />
+                                    {errors['order.password'] && (
+                                        <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                            {errors['order.password']}
+                                        </p>
+                                    )}
+                                </Field>
 
-                            <Field
-                                id="confirmPassword"
-                                label="Confirmă parola"
-                                required
-                            >
-                                <Input
+                                <Field
                                     id="confirmPassword"
-                                    name="confirmPassword"
-                                    type="password"
-                                    autoComplete="new-password"
-                                    placeholder="Reintrodu parola"
-                                    required={orderState.createAccount}
-                                    value={orderState.confirmPassword ?? ''}
-                                    onChange={(event) =>
-                                        updateNullableTextField(
-                                            'confirmPassword',
-                                            event.target.value,
-                                        )
-                                    }
-                                />
-                                {errors['order.password_confirmation'] && (
-                                    <p className="font-['Poppins'] text-xs text-[#ef4444]">
-                                        {errors['order.password_confirmation']}
-                                    </p>
-                                )}
-                            </Field>
-                        </div>
-                    )}
-                </div>
+                                    label="Confirmă parola"
+                                    required
+                                >
+                                    <Input
+                                        id="confirmPassword"
+                                        name="confirmPassword"
+                                        type="password"
+                                        autoComplete="new-password"
+                                        placeholder="Reintrodu parola"
+                                        required={orderState.createAccount}
+                                        value={orderState.confirmPassword ?? ''}
+                                        onChange={(event) =>
+                                            updateNullableTextField(
+                                                'confirmPassword',
+                                                event.target.value,
+                                            )
+                                        }
+                                    />
+                                    {errors['order.password_confirmation'] && (
+                                        <p className="font-['Poppins'] text-xs text-[#ef4444]">
+                                            {
+                                                errors[
+                                                    'order.password_confirmation'
+                                                ]
+                                            }
+                                        </p>
+                                    )}
+                                </Field>
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <button
                     type="submit"

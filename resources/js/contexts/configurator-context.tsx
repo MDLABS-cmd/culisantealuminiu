@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react';
 import {
     createContext,
     useCallback,
@@ -38,22 +39,77 @@ const initialState: ConfiguratorState = {
     optionsError: null,
 };
 
-const initialOrderState: OrderState = {
-    companyName: null,
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    address: '',
-    observations: null,
-    createAccount: false,
-    password: null,
-    confirmPassword: null,
+type ConfiguratorAuthUser = {
+    name?: string;
+    email?: string;
+    first_name?: string;
+    last_name?: string;
+    phone?: string;
+    address?: string;
+    company_name?: string;
 };
 
+function splitFullName(value: string): { firstName: string; lastName: string } {
+    const trimmed = value.trim();
+
+    if (!trimmed) {
+        return { firstName: '', lastName: '' };
+    }
+
+    const parts = trimmed.split(/\s+/);
+
+    if (parts.length === 1) {
+        return { firstName: parts[0], lastName: '' };
+    }
+
+    return {
+        firstName: parts[0],
+        lastName: parts.slice(1).join(' '),
+    };
+}
+
+function getInitialOrderState(user: ConfiguratorAuthUser | null): OrderState {
+    if (!user) {
+        return {
+            companyName: null,
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            address: '',
+            observations: null,
+            createAccount: false,
+            password: null,
+            confirmPassword: null,
+        };
+    }
+
+    const nameParts = splitFullName(user.name ?? '');
+
+    return {
+        companyName: user.company_name ?? null,
+        firstName: user.first_name ?? nameParts.firstName,
+        lastName: user.last_name ?? nameParts.lastName,
+        email: user.email ?? '',
+        phone: user.phone ?? '',
+        address: user.address ?? '',
+        observations: null,
+        createAccount: false,
+        password: null,
+        confirmPassword: null,
+    };
+}
+
 export function ConfiguratorProvider({ children }: PropsWithChildren) {
+    const page = usePage();
+    const authUser =
+        (page.props.auth as { user?: ConfiguratorAuthUser | null } | undefined)
+            ?.user ?? null;
+
     const [state, setState] = useState<ConfiguratorState>(initialState);
-    const [orderState, setOrderState] = useState<OrderState>(initialOrderState);
+    const [orderState, setOrderState] = useState<OrderState>(() =>
+        getInitialOrderState(authUser),
+    );
     const [hasCompletedRequiredSelections, setHasCompletedRequiredSelections] =
         useState(false);
 

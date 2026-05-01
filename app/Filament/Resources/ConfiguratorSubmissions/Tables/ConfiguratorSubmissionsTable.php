@@ -44,17 +44,17 @@ class ConfiguratorSubmissionsTable
                     ->label('Email')
                     ->toggleable(),
                 TextColumn::make('system.name')
-                    ->label('System')
+                    ->label('Sistem')
                     ->toggleable(),
                 TextColumn::make('schema.name')
-                    ->label('Schema')
+                    ->label('Schemă')
                     ->toggleable(),
                 TextColumn::make('total_price')
                     ->label('Total')
                     ->money('RON', divideBy: 1)
                     ->sortable(),
                 TextColumn::make('submitted_at')
-                    ->label('Submitted')
+                    ->label('Trimis')
                     ->dateTime('d.m.Y H:i')
                     ->sortable(),
             ])

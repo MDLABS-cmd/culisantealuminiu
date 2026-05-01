@@ -8,7 +8,7 @@ import type { BreadcrumbItem } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Appearance settings',
+        title: 'Setări aspect',
         href: editAppearance(),
     },
 ];
@@ -16,16 +16,16 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function Appearance() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Appearance settings" />
 
-            <h1 className="sr-only">Appearance settings</h1>
+            <h1 className="sr-only">Setări aspect</h1>
+            <Head title="Setări aspect" />
 
             <SettingsLayout>
                 <div className="space-y-6">
                     <Heading
                         variant="small"
-                        title="Appearance settings"
-                        description="Update your account's appearance settings"
+                        title="Setări aspect"
+                        description="Actualizează setările de aspect ale contului tău"
                     />
                     <AppearanceTabs />
                 </div>

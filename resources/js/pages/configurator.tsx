@@ -97,7 +97,7 @@ function ConfiguratorPageContent() {
                 .catch(() => {
                     setOptions(null);
                     setOptionsError(
-                        'We could not load this schema configuration. Please try again.',
+                        'Nu am putut încărca configurația schemei. Vă rugăm să încercați din nou.',
                     );
                 })
                 .finally(() => {

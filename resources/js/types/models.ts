@@ -24,6 +24,16 @@ export type ColorCategory = BaseModel & {
     order: number;
 };
 
+export type Customer = BaseModel & {
+    user_id: number | null;
+    company_name: string | null;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone: string;
+    address: string;
+};
+
 export type Dimension = BaseModel & {
     schema_id: number;
     width: number;
@@ -145,3 +155,88 @@ export type SchemaWithFiles = Schema & {
 export type SystemWithColorCategories = System & {
     colorCategories: ColorCategory[];
 };
+
+export const CONFIGURATOR_SUBMISSION_TYPES = {
+    ORDER: 'order',
+    OFFER: 'offer',
+} as const;
+
+export type ConfiguratorSubmissionType =
+    (typeof CONFIGURATOR_SUBMISSION_TYPES)[keyof typeof CONFIGURATOR_SUBMISSION_TYPES];
+
+export type ConfiguratorSubmission = BaseModel & {
+    type: ConfiguratorSubmissionType;
+    status: string;
+    customer_id: number;
+    observations: string | null;
+    system_id: number | null;
+    schema_id: number | null;
+    dimension_id: number | null;
+    handle_id: number | null;
+    color_id: number | null;
+    base_price: string;
+    handle_price: string;
+    accessories_total: string;
+    total_price: string;
+    submitted_at: string;
+};
+
+export type ConfiguratorSubmissionAccessory = BaseModel & {
+    submission_id: number;
+    accesory_id: number | null;
+    qty: number;
+};
+
+export type ConfiguratorSubmissionWithCustomer = ConfiguratorSubmission & {
+    customer: Customer;
+};
+
+export type ConfiguratorSubmissionWithSystem = ConfiguratorSubmission & {
+    system: System | null;
+};
+
+export type ConfiguratorSubmissionWithSchema = ConfiguratorSubmission & {
+    schema: Schema | null;
+};
+
+export type ConfiguratorSubmissionWithSystemAndSchema =
+    ConfiguratorSubmission & {
+        system: System | null;
+        schema: Schema | null;
+    };
+
+export type ConfiguratorSubmissionWithDimension = ConfiguratorSubmission & {
+    dimension: Dimension | null;
+};
+
+export type ConfiguratorSubmissionWithHandle = ConfiguratorSubmission & {
+    handle: Handle | null;
+};
+
+export type ConfiguratorSubmissionWithColor = ConfiguratorSubmission & {
+    color: Color | null;
+};
+
+export type ConfiguratorSubmissionWithAccessories = ConfiguratorSubmission & {
+    accessories: ConfiguratorSubmissionAccessory[];
+};
+
+export type ConfiguratorSubmissionDetails = ConfiguratorSubmission & {
+    customer: Customer | null;
+    system: System | null;
+    schema: Schema | null;
+    dimension: Dimension | null;
+    handle: Handle | null;
+    color: Color | null;
+    accessories: ConfiguratorSubmissionAccessoryWithAccesory[];
+};
+
+export type ConfiguratorSubmissionAccessoryWithAccesory =
+    ConfiguratorSubmissionAccessory & {
+        accesory: Accesory | null;
+    };
+
+export type ConfiguratorSubmissionAccessoryWithSubmission =
+    ConfiguratorSubmissionAccessory & {
+        submission: ConfiguratorSubmission;
+    };

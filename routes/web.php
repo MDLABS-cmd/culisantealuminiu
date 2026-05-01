@@ -3,8 +3,8 @@
 use App\Http\Controllers\ConfiguratorSubmissionController;
 use App\Http\Controllers\SchemaController;
 use App\Http\Controllers\SystemController;
+use App\Services\ConfiguratorSubmissionService;
 use Illuminate\Support\Facades\Route;
-use Laravel\Fortify\Features;
 
 Route::inertia('/', 'configurator')->name('home');
 
@@ -14,7 +14,15 @@ Route::post('/configurator/submissions', [ConfiguratorSubmissionController::clas
 Route::inertia('/configurator/success', 'configurator/success')->name('configurator.success');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'dashboard')->name('dashboard');
+    Route::get('dashboard', function (ConfiguratorSubmissionService $submissionService) {
+        $submissions = $submissionService->getUserConfiguratorSubmissions();
+
+        return inertia('dashboard', [
+            'submissions' => $submissions,
+        ]);
+    })->name('dashboard');
+    Route::get('configurator/submissions', [ConfiguratorSubmissionController::class, 'index'])->name('configurator.submissions.index');
+    Route::get('configurator/submissions/{submission}', [ConfiguratorSubmissionController::class, 'show'])->name('configurator.submissions.show');
 });
 
 require __DIR__ . '/settings.php';

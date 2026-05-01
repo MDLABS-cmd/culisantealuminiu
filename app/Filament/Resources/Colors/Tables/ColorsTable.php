@@ -18,13 +18,13 @@ class ColorsTable
             ->modifyQueryUsing(fn($query) => $query->with('category'))
             ->columns([
                 TextColumn::make('category.name')
-                    ->label('Category')
+                    ->label('Categorie')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
                 ViewColumn::make('hex_code')
-                    ->label('Color')
+                    ->label('Culoare')
                     ->view('filament.tables.columns.color-swatch'),
                 TextColumn::make('code')
                     ->searchable(),

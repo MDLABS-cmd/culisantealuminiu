@@ -21,7 +21,7 @@ class AccesoryForm
                 Toggle::make('active')
                     ->required(),
                 Select::make('schemas')
-                    ->label('Schemas')
+                    ->label('Scheme')
                     ->multiple()
                     ->relationship('schemas', 'name')
                     ->preload(),

@@ -31,14 +31,14 @@ class ColorCategoryForm
                             ->required(),
                         TextInput::make('hex_code')
                             ->required()
-                            ->label('Hex Code'),
+                            ->label('Cod Hex'),
                         TextInput::make('code')
                             ->required()
-                            ->label('Code'),
+                            ->label('Cod'),
                         Toggle::make('active')
                             ->required(),
                     ])
-                    ->addActionLabel('Add Color')
+                    ->addActionLabel('Adaugă culoare')
                     ->collapsible()
                     ->columnSpanFull(),
             ]);

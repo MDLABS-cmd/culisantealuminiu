@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { CircleUserRound, Menu, RotateCcw } from 'lucide-react';
+import { CircleUserRound, Menu, RotateCcw, UserPlus } from 'lucide-react';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SystemsLinks, normalizeSystems } from '@/components/systems-links';
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/sheet';
 import { UserMenuContent } from '@/components/user-menu-content';
 import { toUrl } from '@/lib/utils';
-import { login, home } from '@/routes';
+import { login, home, register } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
 
 type Props = {
@@ -129,17 +129,34 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         ) : (
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                asChild
-                                className="h-9 w-9"
-                            >
-                                <Link href={login()}>
-                                    <CircleUserRound className="h-7 w-7 text-[#111827]" />
-                                    <span className="sr-only">Conectare</span>
-                                </Link>
-                            </Button>
+                            <>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    asChild
+                                    className="h-9 w-9"
+                                >
+                                    <Link href={login()}>
+                                        <CircleUserRound className="h-7 w-7 text-[#111827]" />
+                                        <span className="sr-only">
+                                            Conectare
+                                        </span>
+                                    </Link>
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    asChild
+                                    className="h-9 w-9"
+                                >
+                                    <Link href={register()}>
+                                        <UserPlus className="h-7 w-7 text-[#111827]" />
+                                        <span className="sr-only">
+                                            Înregistrare
+                                        </span>
+                                    </Link>
+                                </Button>
+                            </>
                         )}
                     </div>
                 </div>

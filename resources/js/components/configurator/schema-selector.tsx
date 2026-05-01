@@ -1,4 +1,5 @@
 import type { ConfiguratorSchemaListItem } from '@/types';
+import { EmptyState } from '../ui/empty-state';
 import { SchemaCard } from './schema-card';
 
 type SchemaSelectorProps = {
@@ -29,9 +30,7 @@ export function SchemaSelector({
 
     if (schemas.length === 0) {
         return (
-            <p className="mt-3 text-sm text-[#6b7280]">
-                Select a system to see available schemas.
-            </p>
+            <EmptyState title="Nu există scheme disponibile pentru acest sistem." />
         );
     }
 

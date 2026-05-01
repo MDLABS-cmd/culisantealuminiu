@@ -29,7 +29,7 @@ export function AccesorySelector({
     }
 
     if (accesories.length === 0) {
-        return <EmptyState title="No accessories available" />;
+        return <EmptyState title="Nu există accesorii disponibile" />;
     }
 
     return (

@@ -1,7 +1,8 @@
 import { useConfigurator } from '@/hooks/use-configurator';
+import { useDimensionSelector } from '@/hooks/use-dimension-selector';
+import { EmptyState } from '../ui/empty-state';
 import { DimensionListSelect } from './dimension-list-select';
 import { DimensionManualInputs } from './dimension-manual-inputs';
-import { useDimensionSelector } from '@/hooks/use-dimension-selector';
 
 export function DimensionSelector() {
     const {
@@ -36,9 +37,7 @@ export function DimensionSelector() {
 
     if (dimensions.length === 0) {
         return (
-            <p className="mt-3 text-sm text-[#6b7280]">
-                Nu exista dimensiuni disponibile pentru aceasta schema.
-            </p>
+            <EmptyState title="Nu există dimensiuni disponibile pentru această schemă." />
         );
     }
 

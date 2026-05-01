@@ -29,7 +29,7 @@ export function HandleSelector({
     }
 
     if (handles.length === 0) {
-        return <EmptyState title="No handles available" />;
+        return <EmptyState title="Nu există mânere disponibile" />;
     }
 
     return (

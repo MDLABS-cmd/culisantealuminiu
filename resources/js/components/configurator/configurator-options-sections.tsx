@@ -35,20 +35,20 @@ export function ConfiguratorOptionsSections({
             </Section>
 
             <Section
-                title="Dimensions"
-                description="Select the opening size that matches the desired product configuration."
+                title="Dimensiuni"
+                description="Selectați dimensiunea de deschidere care corespunde configurației dorite a produsului."
             >
                 <DimensionSelector />
             </Section>
 
             <Section
-                title="Handles & Accessories"
-                description="Select handle and accessory options for this configuration."
+                title="Mânere și Accesorii"
+                description="Selectați opțiunile de mânere și accesorii pentru această configurație."
             >
                 <div className="mt-4 flex flex-col gap-6 xl:flex-row">
                     <div className="min-w-0 flex-1">
                         <h3 className="text-sm font-semibold text-[#111827]">
-                            Handle
+                            Mânere
                         </h3>
                         <HandleSelector
                             handles={state.options?.handles ?? []}
@@ -60,7 +60,7 @@ export function ConfiguratorOptionsSections({
 
                     <div className="min-w-0 flex-1">
                         <h3 className="text-sm font-semibold text-[#111827]">
-                            Accessories
+                            Accesorii
                         </h3>
                         <AccesorySelector
                             accesories={state.options?.accesories ?? []}
@@ -72,10 +72,7 @@ export function ConfiguratorOptionsSections({
                 </div>
             </Section>
 
-            <Section
-                title="Colors"
-                description="Color categories are loaded from the selected system and shown as individual accordion groups."
-            >
+            <Section title="Culori">
                 <ColorSelector
                     categories={state.options?.colorCategories ?? []}
                     selectedColorIdsByCategory={

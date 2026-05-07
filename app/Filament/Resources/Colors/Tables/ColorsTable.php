@@ -22,19 +22,24 @@ class ColorsTable
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('name')
+                    ->label('Nume')
                     ->searchable(),
                 ViewColumn::make('hex_code')
                     ->label('Culoare')
                     ->view('filament.tables.columns.color-swatch'),
                 TextColumn::make('code')
+                    ->label('Cod')
                     ->searchable(),
                 IconColumn::make('active')
+                    ->label('Activ')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('Creat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Actualizat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

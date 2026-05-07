@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Services\SystemService;
+use App\Settings\TopbarSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
@@ -43,6 +44,18 @@ class HandleInertiaRequests extends Middleware
             $cachePeriod,
             fn() => app(SystemService::class)->getActiveSystemsArray(),
         );
+        $cachedTopbar = Cache::remember(
+            'topbar_settings_v1',
+            $cachePeriod,
+            function (): array {
+                $topbarSettings = app(TopbarSettings::class);
+
+                return [
+                    'phoneNumber' => $topbarSettings->phone_number,
+                    'email' => $topbarSettings->email,
+                ];
+            },
+        );
 
         $normalizedSystems = collect($cachedSystems)->values()->all();
 
@@ -54,6 +67,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
             'activeSystems' => $normalizedSystems,
+            'topbar' => $cachedTopbar,
             'flash' => [
                 'submissionId' => $request->session()->get('submissionId'),
                 'submissionType' => $request->session()->get('submissionType'),

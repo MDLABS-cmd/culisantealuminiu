@@ -14,11 +14,14 @@ class AccesoryForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nume')
                     ->required(),
                 TextInput::make('price')
+                    ->label('Preț')
                     ->required()
                     ->numeric(),
                 Toggle::make('active')
+                    ->label('Activ')
                     ->required(),
                 Select::make('schemas')
                     ->label('Scheme')

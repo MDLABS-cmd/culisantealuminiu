@@ -18,20 +18,25 @@ class ColorCategoriesTable
             ->modifyQueryUsing(fn($query) => $query->with('colors'))
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nume')
                     ->searchable(),
                 ViewColumn::make('colors_preview')
-                    ->label('Colors')
+                    ->label('Culori')
                     ->view('filament.tables.columns.colors-preview'),
                 IconColumn::make('active')
+                    ->label('Activ')
                     ->boolean(),
                 TextColumn::make('order')
+                    ->label('Ordine')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('Creat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Actualizat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

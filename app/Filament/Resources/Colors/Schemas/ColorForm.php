@@ -14,17 +14,23 @@ class ColorForm
         return $schema
             ->components([
                 TextInput::make('color_category_id')
+                    ->label('ID Categorie')
                     ->required()
                     ->numeric(),
                 TextInput::make('name')
+                    ->label('Nume')
                     ->required(),
                 TextInput::make('hex_code')
+                    ->label('Cod Hex')
                     ->required(),
                 TextInput::make('code')
+                    ->label('Cod')
                     ->required(),
                 Toggle::make('active')
+                    ->label('Activ')
                     ->required(),
                 Select::make('colorCategories')
+                    ->label('Categorii de culori')
                     ->relationship('colorCategories', 'name')
                     ->multiple()
                     ->preload(),

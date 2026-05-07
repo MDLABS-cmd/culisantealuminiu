@@ -14,6 +14,7 @@ class DimensionForm
         return $schema
             ->components([
                 Select::make('schema_id')
+                    ->label('Schemă')
                     ->relationship('schema', 'name')
                     ->required()
                     ->preload(),
@@ -26,6 +27,7 @@ class DimensionForm
                     ->numeric()
                     ->required(),
                 Toggle::make('active')
+                    ->label('Activ')
                     ->required(),
             ]);
     }

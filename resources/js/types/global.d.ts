@@ -1,5 +1,6 @@
 import type { Auth } from '@/types/auth';
 import type { System } from '@/types/models';
+import type { TopbarSettings } from '@/types/ui';
 
 declare module '@inertiajs/core' {
     export interface InertiaConfig {
@@ -8,6 +9,7 @@ declare module '@inertiajs/core' {
             auth: Auth;
             sidebarOpen: boolean;
             activeSystems: System[];
+            topbar: TopbarSettings;
             flash: {
                 submissionId: number | null;
                 submissionType: string | null;

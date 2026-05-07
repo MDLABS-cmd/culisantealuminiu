@@ -47,7 +47,7 @@ export function SystemsLinks({
                                 'bg-[#111827] text-white',
                         )}
                     >
-                        {system.name}
+                        {system.display_name || system.name}
                     </Link>
                 ))}
             </div>
@@ -63,7 +63,7 @@ export function SystemsLinks({
                         href={`${homeUrl}?system=${system.id}`}
                         className="poppins-medium relative pb-1 text-[14px] leading-6 text-black"
                     >
-                        {system.name}
+                        {system.display_name || system.name}
                         {selectedSystemId === system.id && (
                             <span className="absolute bottom-0 left-0 h-0.75 w-full bg-[#111827]" />
                         )}
@@ -86,7 +86,7 @@ export function SystemsLinks({
                             : 'border-[#d1d5db] bg-white text-[#111827] hover:bg-[#f3f4f6]',
                     )}
                 >
-                    {system.name}
+                    {system.display_name || system.name}
                 </Link>
             ))}
         </div>

@@ -17,14 +17,17 @@ class SchemaForm
         return $schema
             ->components([
                 Select::make('system_id')
+                    ->label('Sistem')
                     ->relationship('system', 'name')
                     ->required()
                     ->preload(),
                 Select::make('material_id')
+                    ->label('Material')
                     ->relationship('material', 'name')
                     ->required()
                     ->preload(),
                 TextInput::make('name')
+                    ->label('Nume')
                     ->required(),
                 FileUpload::make('image')
                     ->label('Imagine')
@@ -35,16 +38,20 @@ class SchemaForm
                     ->storeFiles(false)
                     ->nullable(),
                 Select::make('price_type')
+                    ->label('Tip preț')
                     ->options(SchemaPriceTypeEnum::options())
                     ->required(),
                 TextInput::make('order')
+                    ->label('Ordine')
                     ->required()
                     ->numeric()
                     ->default(0),
                 Toggle::make('active')
+                    ->label('Activ')
                     ->required(),
 
                 Repeater::make('dimensions')
+                    ->label('Dimensiuni')
                     ->relationship()
                     ->schema([
                         TextInput::make('width')
@@ -56,6 +63,7 @@ class SchemaForm
                             ->numeric()
                             ->required(),
                         Toggle::make('active')
+                            ->label('Activ')
                             ->required(),
                     ])
                     ->columnSpanFull()

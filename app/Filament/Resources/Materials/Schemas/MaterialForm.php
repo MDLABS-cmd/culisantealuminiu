@@ -13,11 +13,14 @@ class MaterialForm
     {
         return $schema->components([
             TextInput::make('name')
+                ->label('Nume')
                 ->required()
                 ->columnSpanFull(),
             Toggle::make('active')
+                ->label('Activ')
                 ->required(),
             TextInput::make('order')
+                ->label('Ordine')
                 ->required()
                 ->numeric()
                 ->default(0),

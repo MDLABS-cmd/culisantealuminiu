@@ -15,14 +15,18 @@ class HandleForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nume')
                     ->required(),
                 Select::make('type')
+                    ->label('Tip')
                     ->required()
                     ->options(HandleTypeEnum::options()),
                 TextInput::make('price')
+                    ->label('Preț')
                     ->required()
                     ->numeric(),
                 Toggle::make('active')
+                    ->label('Activ')
                     ->required(),
             ]);
     }

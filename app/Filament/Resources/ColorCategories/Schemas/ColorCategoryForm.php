@@ -15,19 +15,24 @@ class ColorCategoryForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nume')
                     ->columnSpanFull()
                     ->required(),
                 Toggle::make('active')
+                    ->label('Activ')
                     ->required(),
                 TextInput::make('order')
+                    ->label('Ordine')
                     ->required()
                     ->numeric()
                     ->default(0),
 
                 Repeater::make('colors')
+                    ->label('Culori')
                     ->relationship()
                     ->schema([
                         TextInput::make('name')
+                            ->label('Nume')
                             ->required(),
                         TextInput::make('hex_code')
                             ->required()
@@ -36,6 +41,7 @@ class ColorCategoryForm
                             ->required()
                             ->label('Cod'),
                         Toggle::make('active')
+                            ->label('Activ')
                             ->required(),
                     ])
                     ->addActionLabel('Adaugă culoare')

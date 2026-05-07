@@ -17,29 +17,28 @@ class AccesoriesTable
             ->modifyQueryUsing(fn($query) => $query->with('schemas'))
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nume')
                     ->searchable(),
                 TextColumn::make('price')
+                    ->label('Preț')
                     ->sortable(),
                 TextColumn::make('schemas.name')
                     ->label('Scheme')
                     ->badge()
                     ->wrap(),
                 IconColumn::make('active')
+                    ->label('Activ')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('Creat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Actualizat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->recordActions([
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

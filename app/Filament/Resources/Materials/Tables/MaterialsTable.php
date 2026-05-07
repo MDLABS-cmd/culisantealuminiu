@@ -16,17 +16,22 @@ class MaterialsTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nume')
                     ->searchable(),
                 IconColumn::make('active')
+                    ->label('Activ')
                     ->boolean(),
                 TextColumn::make('order')
+                    ->label('Ordine')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('Creat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Actualizat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

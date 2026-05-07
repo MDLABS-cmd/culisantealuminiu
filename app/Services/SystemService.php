@@ -21,7 +21,7 @@ class SystemService
     /**
      * Get all active systems as plain arrays for frontend/shared props.
      *
-     * @return array<int, array{id:int, name:string}>
+     * @return array<int, array{id:int, name:string, display_name:string|null}>
      */
     public function getActiveSystemsArray(): array
     {
@@ -29,6 +29,7 @@ class SystemService
             ->map(fn(System $system) => [
                 'id' => $system->id,
                 'name' => $system->name,
+                'display_name' => $system->display_name,
             ])
             ->values()
             ->all();

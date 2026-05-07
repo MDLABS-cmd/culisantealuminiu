@@ -24,9 +24,11 @@ class ConfiguratorSubmissionsTable
                     ->label('ID')
                     ->sortable(),
                 TextColumn::make('type')
+                    ->label('Tip')
                     ->badge()
                     ->sortable(),
                 TextColumn::make('status')
+                    ->label('Stare')
                     ->badge()
                     ->sortable(),
                 TextColumn::make('customer.first_name')

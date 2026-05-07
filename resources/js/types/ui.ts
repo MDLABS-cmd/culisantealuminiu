@@ -8,6 +8,11 @@ export type AppLayoutProps = {
 
 export type AppVariant = 'header' | 'sidebar';
 
+export type TopbarSettings = {
+    phoneNumber: string;
+    email: string;
+};
+
 export type AuthLayoutProps = {
     children?: ReactNode;
     name?: string;

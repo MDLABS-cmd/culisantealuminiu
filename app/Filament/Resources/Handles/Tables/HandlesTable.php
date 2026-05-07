@@ -18,18 +18,24 @@ class HandlesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nume')
                     ->searchable(),
                 SelectColumn::make('type')
+                    ->label('Tip')
                     ->options(HandleTypeEnum::options()),
                 TextColumn::make('price')
+                    ->label('Preț')
                     ->sortable(),
                 IconColumn::make('active')
+                    ->label('Activ')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('Creat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Actualizat la')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

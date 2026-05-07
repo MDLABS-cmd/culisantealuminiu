@@ -1,12 +1,15 @@
 <?php
 
+use App\Models\Catalogue;
 use App\Http\Controllers\ConfiguratorSubmissionController;
 use App\Http\Controllers\SchemaController;
 use App\Http\Controllers\SystemController;
+use App\Http\Controllers\CatalogueController;
 use App\Services\ConfiguratorSubmissionService;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'configurator')->name('home');
+Route::get('/cataloguri', [CatalogueController::class, 'index'])->name('catalogues.index');
 
 Route::get('/systems/{system}/schemas', [SystemController::class, 'schemas'])->name('systems.schemas');
 Route::get('/schemas/{schema}/configurator-options', [SchemaController::class, 'configuratorOptions'])->name('schemas.configurator-options');

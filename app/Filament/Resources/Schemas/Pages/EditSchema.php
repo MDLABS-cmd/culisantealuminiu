@@ -14,6 +14,16 @@ class EditSchema extends EditRecord
 
     protected ?UploadedFile $imageUpload = null;
 
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $file = $this->record->getFirstFile('image');
+        if ($file) {
+            $data['image'] = $file->path;
+        }
+
+        return $data;
+    }
+
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $this->imageUpload = $data['image'] ?? null;

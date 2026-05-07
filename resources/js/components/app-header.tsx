@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { CircleUserRound, Menu, RotateCcw, UserPlus } from 'lucide-react';
+import { CircleUserRound, Menu } from 'lucide-react';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SystemsLinks, normalizeSystems } from '@/components/systems-links';
 import { Button } from '@/components/ui/button';
@@ -17,8 +17,10 @@ import {
 } from '@/components/ui/sheet';
 import { UserMenuContent } from '@/components/user-menu-content';
 import { toUrl } from '@/lib/utils';
-import { login, home, register } from '@/routes';
+import { login, home } from '@/routes';
+import { index as cataloguesIndex } from '@/routes/catalogues';
 import type { BreadcrumbItem } from '@/types';
+import { AppTopbar } from '@/components/app-topbar';
 
 type Props = {
     breadcrumbs?: BreadcrumbItem[];
@@ -29,10 +31,12 @@ const brandSubtitle = 'CULISANTE CU RIDICARE DIN ALUMINIU';
 
 export function AppHeader({ breadcrumbs = [] }: Props) {
     const page = usePage();
-    const { auth, activeSystems } = page.props;
+    const { auth, activeSystems, topbar } = page.props;
     const authUser = auth?.user;
     const systems = normalizeSystems(activeSystems);
     const homeUrl = toUrl(home());
+    const phoneNumber = topbar.phoneNumber.trim();
+    const email = topbar.email.trim();
 
     const currentParams = new URLSearchParams(page.url.split('?')[1] ?? '');
     const selectedSystemId =
@@ -40,8 +44,14 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
 
     return (
         <>
-            <div className="relative border-b border-zinc-200 bg-white shadow-[0px_1px_2px_0px_rgba(0,0,0,0.3),0px_1px_3px_0px_rgba(0,0,0,0.15)]">
-                <div className="mx-auto flex h-14 items-center px-4 md:px-8 xl:px-30">
+            <div className="border-b border-zinc-200 bg-white shadow-[0px_1px_2px_0px_rgba(0,0,0,0.3),0px_1px_3px_0px_rgba(0,0,0,0.15)]">
+                <AppTopbar
+                    phoneNumber={phoneNumber}
+                    email={email}
+                    catalogHref={cataloguesIndex.url()}
+                />
+
+                <div className="relative mx-auto flex h-14 items-center px-4 md:px-8 xl:px-30">
                     <div className="mr-2 lg:hidden">
                         <Sheet>
                             <SheetTrigger asChild>
@@ -95,18 +105,6 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                     />
 
                     <div className="ml-auto flex items-center gap-2">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            asChild
-                            className="h-9 w-9"
-                        >
-                            <Link href={home()} preserveScroll>
-                                <RotateCcw className="h-6 w-6 text-[#111827]" />
-                                <span className="sr-only">Resetează</span>
-                            </Link>
-                        </Button>
-
                         {authUser ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
@@ -129,34 +127,17 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         ) : (
-                            <>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    asChild
-                                    className="h-9 w-9"
-                                >
-                                    <Link href={login()}>
-                                        <CircleUserRound className="h-7 w-7 text-[#111827]" />
-                                        <span className="sr-only">
-                                            Conectare
-                                        </span>
-                                    </Link>
-                                </Button>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    asChild
-                                    className="h-9 w-9"
-                                >
-                                    <Link href={register()}>
-                                        <UserPlus className="h-7 w-7 text-[#111827]" />
-                                        <span className="sr-only">
-                                            Înregistrare
-                                        </span>
-                                    </Link>
-                                </Button>
-                            </>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                asChild
+                                className="h-9 w-9"
+                            >
+                                <Link href={login()}>
+                                    <CircleUserRound className="h-7 w-7 text-[#111827]" />
+                                    <span className="sr-only">Conectare</span>
+                                </Link>
+                            </Button>
                         )}
                     </div>
                 </div>

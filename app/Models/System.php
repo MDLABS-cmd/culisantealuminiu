@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-#[Fillable(['name', 'is_custom', 'active', 'order'])]
+#[Fillable(['name', 'display_name', 'is_custom', 'active', 'order'])]
 class System extends Model
 {
     /** @use HasFactory<\Database\Factories\SystemFactory> */

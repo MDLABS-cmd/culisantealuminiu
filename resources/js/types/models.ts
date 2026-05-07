@@ -87,6 +87,7 @@ export type Schema = BaseModel & {
 
 export type System = BaseModel & {
     name: string;
+    display_name: string | null;
     is_custom: boolean;
     active: boolean;
     order: number;
@@ -240,3 +241,9 @@ export type ConfiguratorSubmissionAccessoryWithSubmission =
     ConfiguratorSubmissionAccessory & {
         submission: ConfiguratorSubmission;
     };
+
+export type Catalogue = BaseModel & {
+    title: string;
+    description: string | null;
+    file_url: string | null;
+};

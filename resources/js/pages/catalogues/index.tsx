@@ -1,5 +1,5 @@
 import { Head } from '@inertiajs/react';
-import { CatalogueCard } from '@/components/catalogue-card';
+import { CataloguesGrid } from '@/components/catalogues-grid';
 import ConfiguratorLayout from '@/layouts/configurator-layout';
 import type { BreadcrumbItem } from '@/types';
 import type { Catalogue } from '@/types/models';
@@ -26,18 +26,7 @@ export default function CataloguesPage({ catalogues }: CataloguesPageProps) {
                 </h1>
             </section>
 
-            <section className="mx-auto mt-8 grid max-w-6xl gap-6 xl:grid-cols-2">
-                {catalogues.map((catalogue) => (
-                    <CatalogueCard key={catalogue.id}>
-                        <CatalogueCard.Thumbnail fileUrl={catalogue.file_url} />
-                        <CatalogueCard.TitleAndDescription
-                            title={catalogue.title}
-                            description={catalogue.description}
-                        />
-                        <CatalogueCard.Actions fileUrl={catalogue.file_url} />
-                    </CatalogueCard>
-                ))}
-            </section>
+            <CataloguesGrid catalogues={catalogues} />
         </ConfiguratorLayout>
     );
 }

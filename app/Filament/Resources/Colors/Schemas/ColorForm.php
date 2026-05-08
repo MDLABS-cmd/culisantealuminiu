@@ -13,10 +13,11 @@ class ColorForm
     {
         return $schema
             ->components([
-                TextInput::make('color_category_id')
-                    ->label('ID Categorie')
+                Select::make('color_category_id')
+                    ->label('Categorie culoare')
+                    ->relationship('category', 'name')
                     ->required()
-                    ->numeric(),
+                    ->preload(),
                 TextInput::make('name')
                     ->label('Nume')
                     ->required(),
@@ -29,11 +30,6 @@ class ColorForm
                 Toggle::make('active')
                     ->label('Activ')
                     ->required(),
-                Select::make('colorCategories')
-                    ->label('Categorii de culori')
-                    ->relationship('colorCategories', 'name')
-                    ->multiple()
-                    ->preload(),
             ]);
     }
 }

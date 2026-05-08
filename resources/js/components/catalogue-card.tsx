@@ -48,14 +48,14 @@ function TitleAndDescription({ title, description }: TitleAndDescriptionProps) {
 
 function Actions({ fileUrl }: ActionsProps) {
     return (
-        <div className="flex flex-wrap items-center gap-3 md:col-start-2 md:row-start-2">
+        <div className="flex flex-col flex-wrap items-center gap-3 md:flex-row">
             {fileUrl ? (
                 <>
                     <a
                         href={fileUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="poppins-regular inline-flex items-center gap-2.5 rounded-[14px] border border-[#111827] px-6 py-2.5 text-[14px] leading-none text-[#111827] shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)] transition-colors hover:bg-[#111827] hover:text-white"
+                        className="poppins-regular inline-flex w-full items-center justify-center gap-2.5 rounded-[14px] border border-[#111827] px-6 py-2.5 text-[14px] leading-none text-[#111827] shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)] transition-colors hover:bg-[#111827] hover:text-white md:w-auto"
                     >
                         <Eye className="h-4 w-4 shrink-0" />
                         Vizualizează
@@ -63,7 +63,7 @@ function Actions({ fileUrl }: ActionsProps) {
                     <a
                         href={fileUrl}
                         download
-                        className="poppins-regular inline-flex items-center gap-2.5 rounded-[14px] bg-[#111827] px-6 py-2.5 text-[14px] leading-none text-white shadow-[0px_1px_2px_0px_rgba(12,12,13,0.05)] transition-colors hover:bg-[#222b3a]"
+                        className="poppins-regular inline-flex w-full items-center justify-center gap-2.5 rounded-[14px] bg-[#111827] px-6 py-2.5 text-[14px] leading-none text-white shadow-[0px_1px_2px_0px_rgba(12,12,13,0.05)] transition-colors hover:bg-[#222b3a] md:w-auto"
                     >
                         <Download className="h-3 w-3 shrink-0" />
                         Descarcă

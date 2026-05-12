@@ -12,7 +12,6 @@ type ConfigurationSummaryProps = {
     selectedSystemId: number | null;
     selectedSchemaId: number | null;
     selectedDimensionId: number | null;
-    selectedHandleId: number | null;
     selectedAccesoryIds: number[];
     selectedColorIdsByCategory: Record<number, number | null>;
     options: ConfiguratorSchemaOptionsPayload | null;
@@ -24,7 +23,6 @@ export function ConfigurationSummary({
     selectedSystemId,
     selectedSchemaId,
     selectedDimensionId,
-    selectedHandleId,
     selectedAccesoryIds,
     selectedColorIdsByCategory,
     options,
@@ -36,9 +34,6 @@ export function ConfigurationSummary({
     const selectedSchema = selectedSchemaId ? options?.schema : null;
     const selectedDimension = options?.dimensions.find(
         (item) => item.id === selectedDimensionId,
-    );
-    const selectedHandle = options?.handles.find(
-        (item) => item.id === selectedHandleId,
     );
     const selectedAccesories =
         options?.accesories.filter((item) =>
@@ -91,12 +86,11 @@ export function ConfigurationSummary({
                   .join(', ')
             : 'Nu au fost selectate';
 
-    const selectedHandleLabel = selectedHandle?.name ?? 'Nu au fost selectate';
     const selectedSchemaLabel = selectedSchema?.name ?? 'Nu au fost selectate';
     const selectedSystemLabel = selectedSystem?.name ?? 'Nu au fost selectate';
 
     const canContinue = Boolean(
-        selectedSystem && selectedSchema && selectedDimension && selectedHandle,
+        selectedSystem && selectedSchema && selectedDimension,
     );
 
     const handleSummaryAction = () => {
@@ -147,10 +141,6 @@ export function ConfigurationSummary({
                 <div className="flex items-center gap-2">
                     <dt className="text-[#6b7280]">Culoare</dt>
                     <dd className="text-[#111827]">{selectedColorLabel}</dd>
-                </div>
-                <div className="flex items-center gap-2">
-                    <dt className="text-[#6b7280]">Mâner</dt>
-                    <dd className="text-[#111827]">{selectedHandleLabel}</dd>
                 </div>
             </dl>
 

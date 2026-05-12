@@ -31,7 +31,6 @@ const initialState: ConfiguratorState = {
     selectedSchemaId: null,
     options: null,
     selectedDimensionId: null,
-    selectedHandleId: null,
     selectedAccesoryIds: [],
     selectedColorIdsByCategory: {},
     loadingSchemas: false,
@@ -121,7 +120,6 @@ export function ConfiguratorProvider({ children }: PropsWithChildren) {
                 selectedSchemaId: nextSchemaId,
                 options: null,
                 selectedDimensionId: null,
-                selectedHandleId: null,
                 selectedAccesoryIds: [],
                 selectedColorIdsByCategory: {},
                 optionsError: null,
@@ -135,15 +133,9 @@ export function ConfiguratorProvider({ children }: PropsWithChildren) {
             buildConfiguratorSummary({
                 options: state.options,
                 selectedDimensionId: state.selectedDimensionId,
-                selectedHandleId: state.selectedHandleId,
                 selectedAccesoryIds: state.selectedAccesoryIds,
             }),
-        [
-            state.options,
-            state.selectedDimensionId,
-            state.selectedHandleId,
-            state.selectedAccesoryIds,
-        ],
+        [state.options, state.selectedDimensionId, state.selectedAccesoryIds],
     );
 
     const value = useMemo<ConfiguratorContextValue>(

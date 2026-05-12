@@ -25,7 +25,6 @@ export type ConfiguratorSchemaOptionsPayload = {
 export type ConfiguratorSummary = {
     basePrice: number;
     accessoriesTotal: number;
-    handlePrice: number;
     total: number;
 };
 
@@ -36,7 +35,6 @@ export type ConfiguratorState = {
     selectedSchemaId: number | null;
     options: ConfiguratorSchemaOptionsPayload | null;
     selectedDimensionId: number | null;
-    selectedHandleId: number | null;
     selectedAccesoryIds: number[];
     selectedColorIdsByCategory: Record<number, number | null>;
     loadingSchemas: boolean;

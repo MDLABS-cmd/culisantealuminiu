@@ -63,7 +63,7 @@ export function useDimensionSelector({
         state: { selectedDimensionId },
         selectDimension,
     } = useConfigurator();
-    const [useDimensionList, setUseDimensionList] = useState(true);
+    const [useDimensionList, setUseDimensionList] = useState(false);
     const [manualWidth, setManualWidth] = useState('');
     const [manualHeight, setManualHeight] = useState('');
 

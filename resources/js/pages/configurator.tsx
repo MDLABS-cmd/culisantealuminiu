@@ -53,7 +53,6 @@ function ConfiguratorPageContent() {
         setOptions,
         setOptionsError,
         setSelectedSystem,
-        selectHandle,
         toggleAccesory,
         selectColor,
     } = useConfigurator();
@@ -149,7 +148,6 @@ function ConfiguratorPageContent() {
                 <ConfiguratorOptionsSections
                     state={state}
                     onSchemaSelect={handleSchemaSelect}
-                    onHandleSelect={selectHandle}
                     onToggleAccesory={toggleAccesory}
                     onColorSelect={selectColor}
                     onRetrySchemaOptions={loadSchemaOptions}
@@ -163,7 +161,6 @@ function ConfiguratorPageContent() {
                 selectedSystemId={state.selectedSystemId}
                 selectedSchemaId={state.selectedSchemaId}
                 selectedDimensionId={state.selectedDimensionId}
-                selectedHandleId={state.selectedHandleId}
                 selectedAccesoryIds={state.selectedAccesoryIds}
                 selectedColorIdsByCategory={state.selectedColorIdsByCategory}
                 options={state.options}

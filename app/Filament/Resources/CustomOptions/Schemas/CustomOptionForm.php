@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Accesories\Schemas;
+namespace App\Filament\Resources\CustomOptions\Schemas;
 
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
-class AccesoryForm
+class CustomOptionForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -16,19 +15,10 @@ class AccesoryForm
                 TextInput::make('name')
                     ->label('Nume')
                     ->required(),
-                TextInput::make('price')
-                    ->label('Preț')
-                    ->required()
-                    ->numeric(),
                 Toggle::make('active')
                     ->label('Activ')
                     ->default(true)
                     ->required(),
-                Select::make('schemas')
-                    ->label('Scheme')
-                    ->multiple()
-                    ->relationship('schemas', 'name')
-                    ->preload(),
             ]);
     }
 }

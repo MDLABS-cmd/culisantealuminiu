@@ -32,6 +32,7 @@ class ConfiguratorSubmissionController extends Controller
             'schema',
             'dimension',
             'handle',
+            'customOption',
             'color',
             'accessories.accesory',
         ]);

@@ -48,6 +48,7 @@ class SchemaForm
                     ->default(0),
                 Toggle::make('active')
                     ->label('Activ')
+                    ->default(true)
                     ->required(),
 
                 Repeater::make('dimensions')
@@ -64,6 +65,7 @@ class SchemaForm
                             ->required(),
                         Toggle::make('active')
                             ->label('Activ')
+                            ->default(true)
                             ->required(),
                     ])
                     ->columnSpanFull()

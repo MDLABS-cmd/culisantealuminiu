@@ -25,10 +25,8 @@ class StoreConfiguratorSubmissionRequest extends FormRequest
             'submission.system_id' => ['required', 'integer', 'exists:systems,id'],
             'submission.schema_id' => ['required', 'integer', 'exists:schemas,id'],
             'submission.dimension_id' => ['required', 'integer', 'exists:dimensions,id'],
-            'submission.handle_id' => ['nullable', 'integer', 'exists:handles,id'],
             'submission.color_id' => ['nullable', 'integer', 'exists:colors,id'],
             'submission.base_price' => ['required', 'numeric', 'min:0'],
-            'submission.handle_price' => ['required', 'numeric', 'min:0'],
             'submission.accessories_total' => ['required', 'numeric', 'min:0'],
             'submission.total_price' => ['required', 'numeric', 'min:0'],
             'submission.observations' => ['nullable', 'string', 'max:2000'],
@@ -36,6 +34,9 @@ class StoreConfiguratorSubmissionRequest extends FormRequest
             // Accessories
             'selected_accesory_ids' => ['nullable', 'array'],
             'selected_accesory_ids.*' => ['integer', 'exists:accesories,id'],
+
+            // Custom option
+            'selected_custom_option_id' => ['nullable', 'integer', 'exists:custom_options,id'],
 
             // Customer / order
             'order.company_name' => ['nullable', 'string', 'max:255'],
@@ -68,6 +69,7 @@ class StoreConfiguratorSubmissionRequest extends FormRequest
             'order' => $validated['order'] ?? [],
             'submission' => $validated['submission'] ?? [],
             'selected_accesory_ids' => $validated['selected_accesory_ids'] ?? [],
+            'selected_custom_option_id' => $validated['selected_custom_option_id'] ?? null,
         ];
     }
 }

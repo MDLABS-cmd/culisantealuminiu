@@ -32,6 +32,7 @@ const initialState: ConfiguratorState = {
     options: null,
     selectedDimensionId: null,
     selectedAccesoryIds: [],
+    selectedCustomOptionIds: [],
     selectedColorIdsByCategory: {},
     loadingSchemas: false,
     loadingOptions: false,
@@ -121,6 +122,7 @@ export function ConfiguratorProvider({ children }: PropsWithChildren) {
                 options: null,
                 selectedDimensionId: null,
                 selectedAccesoryIds: [],
+                selectedCustomOptionIds: [],
                 selectedColorIdsByCategory: {},
                 optionsError: null,
             }));
@@ -204,6 +206,19 @@ export function ConfiguratorProvider({ children }: PropsWithChildren) {
                                   (id) => id !== accesoryId,
                               )
                             : [...previous.selectedAccesoryIds, accesoryId],
+                    };
+                });
+            },
+            toggleCustomOption: (customOptionId: number) => {
+                setState((previous) => {
+                    const hasCustomOption =
+                        previous.selectedCustomOptionIds[0] === customOptionId;
+
+                    return {
+                        ...previous,
+                        selectedCustomOptionIds: hasCustomOption
+                            ? []
+                            : [customOptionId],
                     };
                 });
             },

@@ -26,10 +26,11 @@ class SubmitConfiguratorSelectionService
             $order = (array) ($payload['order'] ?? []);
             $submission = (array) ($payload['submission'] ?? []);
             $accessoryIds = (array) ($payload['selected_accesory_ids'] ?? []);
+            $customOptionId = $payload['selected_custom_option_id'] ?? null;
 
             $user = $this->resolveSubmissionUserService->resolve($order, $authenticatedUser);
             $customer = $this->resolveSubmissionCustomerService->resolve($order, $user);
-            $createdSubmission = $this->createSubmissionRecordService->create($customer, $submission);
+            $createdSubmission = $this->createSubmissionRecordService->create($customer, $submission, $customOptionId);
 
             $this->attachSubmissionAccessoriesService->attach($createdSubmission, $accessoryIds);
 

@@ -94,6 +94,7 @@ export default function ConfiguratorOrderForm() {
         const selectedSystem = state.systems.find(
             (s) => s.id === state.selectedSystemId,
         );
+        const selectedCustomOptionId = state.selectedCustomOptionIds[0] ?? null;
 
         const payload = {
             order: {
@@ -117,16 +118,14 @@ export default function ConfiguratorOrderForm() {
                 system_id: state.selectedSystemId,
                 schema_id: state.selectedSchemaId,
                 dimension_id: state.selectedDimensionId,
-                handle_id: state.selectedHandleId,
                 color_id: colorId,
                 base_price: summary.basePrice,
-                handle_price: summary.handlePrice,
                 accessories_total: summary.accessoriesTotal,
                 total_price: summary.total,
             },
             selected_accesory_ids: state.selectedAccesoryIds,
+            selected_custom_option_id: selectedCustomOptionId,
         };
-        console.log('Submitting order with payload:', payload);
 
         router.post(submissionStore.url(), payload, {
             onStart: () => {

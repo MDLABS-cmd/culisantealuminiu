@@ -1,9 +1,11 @@
+import { usePage } from '@inertiajs/react';
 import { AccesorySelector } from '@/components/configurator/accesory-selector';
 import { ColorSelector } from '@/components/configurator/color-selector';
 import { DimensionSelector } from '@/components/configurator/dimension-selector';
 import { SchemaSelector } from '@/components/configurator/schema-selector';
 import { Section } from '@/components/configurator/section';
 import type { ConfiguratorState } from '@/types';
+import { CustomOptionsList } from './custom-options-list';
 
 type ConfiguratorOptionsSectionsProps = {
     state: ConfiguratorState;
@@ -20,6 +22,9 @@ export function ConfiguratorOptionsSections({
     onColorSelect,
     onRetrySchemaOptions,
 }: ConfiguratorOptionsSectionsProps) {
+    const page = usePage();
+    const { activeCustomOptions } = page.props;
+
     return (
         <div className="space-y-6">
             <Section title="Alege schema" titleClassName="text-center">
@@ -87,6 +92,9 @@ export function ConfiguratorOptionsSections({
                         )}
                     </div>
                 )}
+            </Section>
+            <Section title="Opțiuni personalizate">
+                <CustomOptionsList customOptions={activeCustomOptions} />
             </Section>
         </div>
     );

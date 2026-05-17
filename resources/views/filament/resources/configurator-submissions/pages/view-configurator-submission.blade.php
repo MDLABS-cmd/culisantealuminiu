@@ -164,6 +164,21 @@
                 </div>
             </div>
 
+            {{-- Opțiune Custom --}}
+            <div class="flex flex-col items-center gap-4 rounded-2xl bg-white p-6">
+                <p class="text-xl text-[#111827]">Opțiune Custom</p>
+                <div class="flex w-full flex-col">
+                    @if ($submission->customOption)
+                        <div class="flex items-center gap-2">
+                            <span class="size-1.5 shrink-0 rounded-full bg-[#111827]"></span>
+                            <p class="text-sm text-[#111827]">{{ $submission->customOption->name }}</p>
+                        </div>
+                    @else
+                        <p class="text-sm text-[#6b7280]">-</p>
+                    @endif
+                </div>
+            </div>
+
             {{-- Preț --}}
             <div class="flex flex-col items-center gap-4 rounded-2xl bg-white p-6">
                 <p class="text-xl text-[#111827]">Preț</p>
@@ -173,7 +188,7 @@
                             <span class="size-1.5 shrink-0 rounded-full bg-[#111827]"></span>
                             <p class="text-sm text-[#111827]">
                                 Dimensiune: {{ $dimension ? $dimension->width . 'x' . $dimension->height : '-' }}
-                                (+{{ number_format((float) $submission->base_price, 2, ',', '.') }} RON)
+                                (+{{ number_format((float) $submission->base_price, 2, ',', '.') }} EUR)
                             </p>
                         </div>
                         @foreach ($accessories as $acc)
@@ -187,7 +202,7 @@
                                 <span class="size-1.5 shrink-0 rounded-full bg-[#111827]"></span>
                                 <p class="text-sm text-[#111827]">
                                     {{ $submission->handle->name }}
-                                    (+{{ number_format((float) $submission->handle_price, 2, ',', '.') }} RON)
+                                    (+{{ number_format((float) $submission->handle_price, 2, ',', '.') }} EUR)
                                 </p>
                             </div>
                         @endif
@@ -195,7 +210,7 @@
                     <div class="flex flex-col items-end justify-end self-stretch">
                         <p class="text-xs uppercase text-[#111827]">Preț total</p>
                         <p class="text-xl text-[#111827]">
-                            {{ number_format((float) $submission->total_price, 2, ',', '.') }} RON
+                            {{ number_format((float) $submission->total_price, 2, ',', '.') }} EUR
                         </p>
                     </div>
                 </div>

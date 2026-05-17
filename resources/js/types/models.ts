@@ -93,6 +93,11 @@ export type System = BaseModel & {
     order: number;
 };
 
+export type CustomOption = BaseModel & {
+    name: string;
+    active: boolean;
+};
+
 export type AccesoryWithSchemas = Accesory & {
     schemas: Schema[];
 };
@@ -228,6 +233,7 @@ export type ConfiguratorSubmissionDetails = ConfiguratorSubmission & {
     schema: Schema | null;
     dimension: Dimension | null;
     handle: Handle | null;
+    customOption: CustomOption | null;
     color: Color | null;
     accessories: ConfiguratorSubmissionAccessoryWithAccesory[];
 };

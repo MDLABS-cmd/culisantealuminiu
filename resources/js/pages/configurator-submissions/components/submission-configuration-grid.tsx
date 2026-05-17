@@ -1,7 +1,7 @@
 import type { ConfiguratorSubmissionDetails } from '@/types';
+import { formatCurrency, normalizeHex } from '../utils/formatters';
 import { BulletRow } from './bullet-row';
 import { ConfigCard } from './config-card';
-import { formatCurrency, normalizeHex } from '../utils/formatters';
 
 type SubmissionConfigurationGridProps = {
     submission: ConfiguratorSubmissionDetails;
@@ -120,6 +120,16 @@ export function SubmissionConfigurationGrid({
                 </div>
             </ConfigCard>
 
+            <ConfigCard title="Optiune Custom">
+                <div className="flex w-full flex-col">
+                    {submission.customOption ? (
+                        <BulletRow text={submission.customOption.name} />
+                    ) : (
+                        <p className="text-sm text-[#6b7280]">-</p>
+                    )}
+                </div>
+            </ConfigCard>
+
             <ConfigCard title="Pret">
                 <div className="flex w-full items-start gap-1">
                     <div className="flex flex-1 flex-col gap-0.5">
@@ -128,7 +138,7 @@ export function SubmissionConfigurationGrid({
                                 submission.dimension
                                     ? `${submission.dimension.width}x${submission.dimension.height}`
                                     : '-'
-                            } (+${formatCurrency(submission.base_price)} RON)`}
+                            } (+${formatCurrency(submission.base_price)} EUR)`}
                         />
 
                         {accessories.map((accessoryRow) => (
@@ -140,7 +150,7 @@ export function SubmissionConfigurationGrid({
 
                         {submission.handle && (
                             <BulletRow
-                                text={`${submission.handle.name} (+${formatCurrency(submission.handle_price)} RON)`}
+                                text={`${submission.handle.name} (+${formatCurrency(submission.handle_price)} EUR)`}
                             />
                         )}
                     </div>
@@ -150,7 +160,7 @@ export function SubmissionConfigurationGrid({
                             Pret total
                         </p>
                         <p className="text-xl text-[#111827]">
-                            {formatCurrency(submission.total_price)} RON
+                            {formatCurrency(submission.total_price)} EUR
                         </p>
                     </div>
                 </div>

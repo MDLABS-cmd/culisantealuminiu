@@ -13,7 +13,7 @@ class CreateSubmissionRecordService
      *
      * @param  array<string, mixed>  $submission
      */
-    public function create(Customer $customer, array $submission): ConfiguratorSubmission
+    public function create(Customer $customer, array $submission, ?int $customOptionId = null): ConfiguratorSubmission
     {
         $isCustomConfiguration = (bool) ($submission['is_custom'] ?? false);
         $type = $isCustomConfiguration
@@ -30,6 +30,7 @@ class CreateSubmissionRecordService
             'dimension_id' => $this->nullableInt($submission['dimension_id'] ?? null),
             'handle_id' => $this->nullableInt($submission['handle_id'] ?? null),
             'color_id' => $this->nullableInt($submission['color_id'] ?? null),
+            'custom_option_id' => $customOptionId,
             'base_price' => (float) ($submission['base_price'] ?? 0),
             'handle_price' => (float) ($submission['handle_price'] ?? 0),
             'accessories_total' => (float) ($submission['accessories_total'] ?? 0),

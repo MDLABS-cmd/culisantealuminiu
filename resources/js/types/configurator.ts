@@ -36,6 +36,7 @@ export type ConfiguratorState = {
     options: ConfiguratorSchemaOptionsPayload | null;
     selectedDimensionId: number | null;
     selectedAccesoryIds: number[];
+    selectedCustomOptionIds: number[];
     selectedColorIdsByCategory: Record<number, number | null>;
     loadingSchemas: boolean;
     loadingOptions: boolean;
@@ -71,6 +72,7 @@ export type ConfiguratorContextValue = {
     selectDimension: (dimensionId: number | null) => void;
     selectHandle: (handleId: number | null) => void;
     toggleAccesory: (accesoryId: number) => void;
+    toggleCustomOption: (customOptionId: number) => void;
     selectColor: (categoryId: number, colorId: number | null) => void;
     setOrderState: (orderState: OrderState) => void;
     markSelectionCompleted: () => void;

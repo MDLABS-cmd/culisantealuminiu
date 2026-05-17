@@ -25,6 +25,7 @@ class SystemForm
                     ->required(),
                 Toggle::make('active')
                     ->label('Activ')
+                    ->default(true)
                     ->required(),
                 TextInput::make('order')
                     ->label('Ordine')

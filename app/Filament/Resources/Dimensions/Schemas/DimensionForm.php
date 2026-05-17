@@ -28,6 +28,7 @@ class DimensionForm
                     ->required(),
                 Toggle::make('active')
                     ->label('Activ')
+                    ->default(true)
                     ->required(),
             ]);
     }

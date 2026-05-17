@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'schema_id',
     'dimension_id',
     'handle_id',
+    'custom_option_id',
     'color_id',
     'base_price',
     'handle_price',
@@ -61,6 +62,11 @@ class ConfiguratorSubmission extends Model
     public function handle(): BelongsTo
     {
         return $this->belongsTo(Handle::class);
+    }
+
+    public function customOption(): BelongsTo
+    {
+        return $this->belongsTo(CustomOption::class);
     }
 
     public function color(): BelongsTo

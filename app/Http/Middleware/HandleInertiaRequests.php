@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Services\SystemService;
+use App\Services\CustomOptionService;
 use App\Settings\TopbarSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -44,6 +45,11 @@ class HandleInertiaRequests extends Middleware
             $cachePeriod,
             fn() => app(SystemService::class)->getActiveSystemsArray(),
         );
+        $cachedCustomOptions = Cache::remember(
+            'active_custom_options_v1',
+            $cachePeriod,
+            fn() => app(CustomOptionService::class)->getActiveCustomOptions(),
+        );
         $cachedTopbar = Cache::remember(
             'topbar_settings_v1',
             $cachePeriod,
@@ -68,6 +74,7 @@ class HandleInertiaRequests extends Middleware
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
             'activeSystems' => $normalizedSystems,
             'topbar' => $cachedTopbar,
+            'activeCustomOptions' => $cachedCustomOptions,
             'flash' => [
                 'submissionId' => $request->session()->get('submissionId'),
                 'submissionType' => $request->session()->get('submissionType'),

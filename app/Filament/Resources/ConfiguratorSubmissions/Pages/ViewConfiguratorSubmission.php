@@ -21,6 +21,7 @@ class ViewConfiguratorSubmission extends ViewRecord
             'schema',
             'dimension',
             'handle',
+            'customOption',
             'color',
             'accessories.accesory',
         ]);
